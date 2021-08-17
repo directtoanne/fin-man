@@ -1,0 +1,2 @@
+class GoalsTransactionsController < ApplicationController
+end
