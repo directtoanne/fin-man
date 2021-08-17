@@ -1,0 +1,4 @@
+<h1>Here are your goals</h1>
+<% @goals.each do |goal| %>
+  <%= link_to goal.name, goal_path(goal) %><%=" - #{goal.current_amount ? @goal.current_amount : 0}/#{goal.target_amount} - #{goal.target_due_date}" %>
+<% end %>
