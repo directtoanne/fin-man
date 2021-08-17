@@ -1,16 +1,12 @@
 class AccountPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
 
   def create?
     return true
-  end
-
-  def index?
-    record.user == user
   end
 
   def show?

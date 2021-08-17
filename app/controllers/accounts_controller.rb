@@ -1,9 +1,9 @@
 class AccountsController < ApplicationController
   before_action :find_account, only: [:show, :destroy]
-  after_action :authorize_acc, except: [:index, :create]
+  after_action :authorize_acc, only: [:new, :show, :destroy]
 
   def index
-    @accounts = Account.where(user_id: current_user.id)
+    @accounts = policy_scope(Account)
   end
 
   def show
