@@ -1,13 +1,12 @@
 class AccountsController < ApplicationController
-  before_action :find_account, only: [:show, :destroy]
-  after_action :authorize_acc, only: [:new, :show, :destroy]
+  before_action :set_account, only: [:show, :destroy]
+  after_action :authorize_acc, only: [:new]
 
   def index
     @accounts = policy_scope(Account)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @account = Account.new
@@ -16,7 +15,7 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_strong_params)
     @account.user_id = current_user.id
-    authorize @account
+    authorize_acc
     @account.save ? (redirect_to account_path(@account)) : (render :new)
   end
 
@@ -27,8 +26,9 @@ class AccountsController < ApplicationController
 
   private
 
-  def find_account
+  def set_account
     @account = Account.find(params[:id])
+    authorize_acc
   end
 
   def authorize_acc
