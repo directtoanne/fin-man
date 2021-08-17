@@ -1,3 +1,4 @@
 <h1><%= @goal.name %></h1>
 <%="You have already saved #{@goal.current_amount ? @goal.current_amount : 0} towards your goal and the target that you've set is #{@goal.target_amount}. The due date is currently #{@goal.target_due_date}." %>
+<p><%= link_to "Delete", goal_path(@goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
 <p><%= link_to "Back to all your goals", goals_path %></p>
