@@ -1,7 +1,9 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
+  after_action :authorize_goal, only: [:new]
+
   def index
-    @goals = Goal.all
+    @goals = policy_scope(Goal)
   end
 
   def show; end
@@ -13,6 +15,7 @@ class GoalsController < ApplicationController
   def create
     @goal = Goal.new(goal_strong_params)
     @goal.user_id = current_user.id
+    authorize_goal
     @goal.save ? (redirect_to goal_path(@goal)) : (render :new)
   end
 
@@ -32,9 +35,16 @@ class GoalsController < ApplicationController
 
   def set_goal
     @goal = Goal.find(params[:id])
+    authorize_goal
+  end
+
+  def authorize_goal
+    authorize @goal
   end
 
   def goal_strong_params
-    params.require(:goal).permit(:name, :target_amount, :target_due_date, :start_date)
+    params.require(:goal).permit(
+      :name, :target_amount, :target_due_date, :start_date
+      )
   end
 end
