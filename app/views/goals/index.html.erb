@@ -1,5 +1,22 @@
-<h1>Here are your goals</h1>
-<%= link_to "Create a new goal", new_goal_path %>
-<% @goals.each do |goal| %>
-  <p><%= link_to goal.name, goal_path(goal) %><%=" - #{goal.current_amount ? @goal.current_amount : 0}/#{goal.target_amount} - #{goal.target_due_date} - " %><%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
-<% end %>
+<script>
+  console.log("Goals Count: <%= @goals.count %>")
+</script>
+<div class="container">
+  <h1>Here are your goals</h1>
+  <%= link_to "Create a new goal", new_goal_path %>
+  <div class="cards">
+    <% @goals.each do |goal| %>
+      <div class="goal-card card flex-row shadow">
+        <div class="goal-img-container col-xs-6 col-s-3 col-m-3 col-l-3 col-xl-3 col-xxl-3">
+          <img class="goal-img" src="https://www.incharge.org/wp-content/uploads/2015/06/Financial-Budget-Goals-300x241.gif" alt="" class="card-img">
+        </div>
+        <div class="col-xs-6 col-s-9 col-m-9 col-l-9 col-xl-9 col-xxl-9">
+          <h5 class="card-title"><%=goal.name.capitalize%></h5>
+          <p>Goal progress: <%= goal.current_amount ? goal.current_amount : 0 %> / <%= goal.target_amount %></p>
+          <p>Due Date: <%= goal.target_due_date %></p>
+          <p><%= link_to goal.name, goal_path(goal) %><%=" - #{goal.current_amount ? goal.current_amount : 0}/#{goal.target_amount} - #{goal.target_due_date} - " %><%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
