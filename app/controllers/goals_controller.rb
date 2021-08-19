@@ -6,11 +6,7 @@ class GoalsController < ApplicationController
     @goals = policy_scope(Goal)
   end
 
-  def show
-    set_goal
-    ## calculate goal percentage
-    @goal_percent = 100 * @goal.current_amount.to_f / @goal.target_amount.to_f
-  end
+  def show; end
 
   def new
     @goal = Goal.new
