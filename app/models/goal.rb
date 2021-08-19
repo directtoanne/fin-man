@@ -20,4 +20,12 @@ class Goal < ApplicationRecord
   def pretty_date(time_date)
     time_date.strftime("%a %d-%b-%y")
   end
+
+  def progress_color
+    if current_status == "Overdue"
+      "bg-danger"
+    else
+      "bg-success"
+    end
+  end
 end
