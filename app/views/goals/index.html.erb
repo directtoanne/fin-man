@@ -11,10 +11,16 @@
           <img class="goal-img" src="https://www.incharge.org/wp-content/uploads/2015/06/Financial-Budget-Goals-300x241.gif" alt="" class="card-img">
         </div>
         <div class="col-xs-6 col-s-9 col-m-9 col-l-9 col-xl-9 col-xxl-9">
-          <h5 class="card-title"><%=goal.name.capitalize%></h5>
+          <div class="row">
+            <div class="col"><h5 class="card-title"><%=goal.name.capitalize%></h5></div>
+            <div class="col" style="text-align:right;"><%=goal.current_status%></div>
+          </div>
+          
           <p>Goal progress: <%= goal.current_amount ? goal.current_amount : 0 %> / <%= goal.target_amount %></p>
-          <p>Due Date: <%= goal.target_due_date %></p>
-          <p><%= link_to goal.name, goal_path(goal) %><%=" - #{goal.current_amount ? goal.current_amount : 0}/#{goal.target_amount} - #{goal.target_due_date} - " %><%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
+          <p>Due Date: <%= goal.pretty_date(goal.target_due_date) %></p>
+          <p><%= link_to "View", goal_path(goal) %>
+          <%= link_to "Edit", edit_goal_path(goal) %>
+          <%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
         </div>
       </div>
     <% end %>
