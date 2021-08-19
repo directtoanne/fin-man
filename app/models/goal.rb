@@ -8,12 +8,16 @@ class Goal < ApplicationRecord
   def current_status
     if completed?
       "Complete"
-    elsif target_due_date > Time.now
+    elsif target_due_date.past?
       "Overdue"
-    elsif current_amount.zero?
+    elsif current_amount == 0.to_f
       "Not Started"
     else
       "Active"
     end
+  end
+
+  def pretty_date(time_date)
+    time_date.strftime("%a %d-%b-%y")
   end
 end
