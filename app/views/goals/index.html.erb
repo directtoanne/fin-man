@@ -11,11 +11,9 @@
           <img class="goal-img" src="https://www.incharge.org/wp-content/uploads/2015/06/Financial-Budget-Goals-300x241.gif" alt="" class="card-img">
         </div>
         <div class="col-xs-6 col-s-9 col-m-9 col-l-9 col-xl-9 col-xxl-9">
-          <div class="progress m-auto" style="height:20px;width:100%;">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="<%=goal.current_amount%>" aria-valuemin="0" aria-valuemax="<%=goal.target_amount%>" style="width: <%= goal.goal_percent_complete %>%"><%= goal.goal_percent_complete %>%</div>
-          </div>
           <h5 class="card-title"><%=goal.name.capitalize%></h5>
-          <h2><%= goal.goal_percent_complete %></h2>
+          <p>Goal progress: <%= goal.current_amount ? goal.current_amount : 0 %> / <%= goal.target_amount %></p>
+          <p>Due Date: <%= goal.target_due_date %></p>
           <p><%= link_to goal.name, goal_path(goal) %><%=" - #{goal.current_amount ? goal.current_amount : 0}/#{goal.target_amount} - #{goal.target_due_date} - " %><%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
         </div>
       </div>
