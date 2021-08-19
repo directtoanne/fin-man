@@ -20,4 +20,8 @@ class GoalPolicy < ApplicationPolicy
   def update?
     record.user == user
   end
+
+  def dashboard?
+    true
+  end
 end
