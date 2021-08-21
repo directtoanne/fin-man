@@ -15,3 +15,22 @@
   border-bottom-left-radius: 5px;
   max-width: 200px;
 }
+
+.account-card {
+  padding: 15px;
+  border: $dark-coral 2px solid;
+  border-radius: 5px;
+  width: 300px;
+  height: 200px;
+  text-decoration: none;
+}
+
+.card-title {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+}
+
+a:hover {
+  text-decoration: none;
+}
