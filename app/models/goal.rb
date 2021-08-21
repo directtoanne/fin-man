@@ -24,16 +24,7 @@ class Goal < ApplicationRecord
 
   # Set categorys for te Goals
   def goal_categories
-    [
-      "Car",
-      "Debt",
-      "Education",
-      "Holiday",
-      "Home",
-      "Medical",
-      "Savings",
-      "Other"
-    ]
+    ["Car", "Debt", "Education", "Holiday", "Home", "Medical", "Savings", "Wedding", "Other"]
   end
 
   private
