@@ -1,10 +1,12 @@
 <script>
-  console.log("Goal Percentage: <%= @goal_percent.to_f %>")
+  console.log("Goal Percentage: <%= @goal.goal_percent_complete %>")
+  console.log("Goal Status: <%= @goal.current_status %>")
+  console.log("Goal Due: <%= @goal.pretty_date(@goal.target_due_date) %>")
 </script>
 <div class="container">
   <h1><%= @goal.name %></h1>
   <div class="progress m-auto" style="height:20px;width:100%;">
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="<%=@goal.current_amount%>" aria-valuemin="0" aria-valuemax="<%=@goal.target_amount%>" style="width: <%= @goal.goal_percent_complete %>%"><%= @goal.goal_percent_complete %>%</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated <%= @goal.progress_color %>" role="progressbar" aria-valuenow="<%=@goal.current_amount%>" aria-valuemin="0" aria-valuemax="<%=@goal.target_amount%>" style="width: <%= @goal.goal_percent_complete %>%"><%= @goal.goal_percent_complete %>%</div>
   </div>
   <%="You have already saved #{@goal.current_amount ? @goal.current_amount : 0} towards your goal and the target that you've set is #{@goal.target_amount}. The due date is currently #{@goal.target_due_date}." %>
   <p><%= link_to "Delete", goal_path(@goal), method: :delete, data: { confirm: "Are you sure?" } %></p>

@@ -1,20 +1,84 @@
 <script>
   console.log("Goals Count: <%= @goals.count %>")
+
+  function hideShowGraph() {
+    var graph = document.getElementById('goalsChart')
+
+    if (graph.style.display === "none") {
+      graph.style.display = "block";
+    } else {
+      graph.style.display = "none";
+    }
+  }
 </script>
 <div class="container">
   <h1>Here are your goals</h1>
-  <%= link_to "Create a new goal", new_goal_path %>
+  <button id="graphButton" onclick="hideShowGraph()" class="btn btn-primary"><i class="fas fa-eye"></i> Graph</button>
+  <%= link_to "Create a new goal", new_goal_path, class: "btn btn-primary" %>
+  <!-- Goals Graph -->
+  <canvas id="goalsChart" class="goals-chart" style="max-width:100%;"></canvas>
+  <script>
+    var ctx = document.getElementById('goalsChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Complete', 'Active', 'Overdue', 'Not Started'],
+            datasets: [{
+                label: 'Goals Overview',
+                data: [
+                  <%=@goal_status.count("Complete")%>,
+                  <%=@goal_status.count("Active")%>,
+                  <%=@goal_status.count("Overdue")%>,
+                  <%=@goal_status.count("Not Started")%>
+                  ],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+    
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+  </script>
+  <!-- Goals Graph END-->
+  <!-- Hide / Show chart on button press -->
   <div class="cards">
     <% @goals.each do |goal| %>
       <div class="goal-card card flex-row shadow">
-        <div class="goal-img-container col-xs-6 col-s-3 col-m-3 col-l-3 col-xl-3 col-xxl-3">
+        <div class="goal-img-container">
           <img class="goal-img" src="https://www.incharge.org/wp-content/uploads/2015/06/Financial-Budget-Goals-300x241.gif" alt="" class="card-img">
         </div>
-        <div class="col-xs-6 col-s-9 col-m-9 col-l-9 col-xl-9 col-xxl-9">
-          <h5 class="card-title"><%=goal.name.capitalize%></h5>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title"><%=goal.name.capitalize%></h5>
+            </div>
+            <div class="col" style="text-align:right;"><%=goal.current_status%></div>
+          </div>
           <p>Goal progress: <%= goal.current_amount ? goal.current_amount : 0 %> / <%= goal.target_amount %></p>
-          <p>Due Date: <%= goal.target_due_date %></p>
-          <p><%= link_to goal.name, goal_path(goal) %><%=" - #{goal.current_amount ? goal.current_amount : 0}/#{goal.target_amount} - #{goal.target_due_date} - " %><%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
+          <p>Due Date: <%= goal.pretty_date(goal.target_due_date) %></p>
+          <p><%= link_to "View", goal_path(goal) %>
+            <%= link_to "Edit", edit_goal_path(goal) %>
+            <%= link_to "Delete", goal_path(goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
         </div>
       </div>
     <% end %>

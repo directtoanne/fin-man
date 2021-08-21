@@ -4,6 +4,7 @@ class GoalsController < ApplicationController
 
   def index
     @goals = policy_scope(Goal)
+    @goal_status = goals_status_count
   end
 
   def show; end
@@ -46,5 +47,14 @@ class GoalsController < ApplicationController
     params.require(:goal).permit(
       :name, :target_amount, :target_due_date, :start_date
       )
+  end
+
+  def goals_status_count
+    goal_status = []
+    goals = Goal.all.where(user_id: current_user.id)
+    goals.each do |goal|
+      goal_status << goal.current_status
+    end
+    return goal_status
   end
 end
