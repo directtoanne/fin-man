@@ -1,12 +1,13 @@
-<h1>You have <%= @accounts.count %> accounts with Fin-Man:</h1>
+<h1>You have <%= @accounts.count %> <%= @accounts.count == 1 ? "account" : "accounts"  %> with Fin-Man:</h1>
 <div class="container">
   <% @accounts.each do |account| %>
-    <div class="card d-flex">
-      <h5 class="card-title"><%= account.bank_name %></h5>
-      <p class="card-text"><%= account.currency %></p>
-      <p class="card-text"><%= account.account_number %></p>
-      <p class="card-text"><%= account.sort_code %></p>
-      <p class="card-text"><%= account.balance %></p>
-    </div>
+    <%= link_to account_path(account.id) do %>
+      <div class="card d-flex account-card">
+        <h5 class="card-title"><%= account.bank_name %></h5>
+        <p class="card-text">Balance: <%= account.balance %> (Currency: <%= account.currency %>)</p>
+        <p class="card-text">Account number: <%= account.account_number %></p>
+        <p class="card-text">Sort code: <%= account.sort_code %></p>
+      </div>
+    <% end %>
   <% end %>
 </div>
