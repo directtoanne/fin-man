@@ -1,5 +1,5 @@
-<h1>You have <%= @accounts.count %> accounts with Fin-Man:</h1>
-<div class="container">
+<h1>You have <%= @accounts.count %> <%= @accounts.count == 1 ? "account" : "accounts"  %> with Fin-Man:</h1>
+<div class="container card-deck">
   <% @accounts.each do |account| %>
     <div class="card d-flex">
       <h5 class="card-title"><%= account.bank_name %></h5>
