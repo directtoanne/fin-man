@@ -27,6 +27,21 @@ class Goal < ApplicationRecord
     ["Car", "Debt", "Education", "Holiday", "Home", "Medical", "Savings", "Wedding", "Other"]
   end
 
+  def goal_categories_icon
+    case category
+    when "Car" then "fas fa-car"
+    when "Debt" then "fas fa-file-invoice-dollar"
+    when "Education" then "fas fa-user-graduate"
+    when "Holiday" then "fas fa-umbrella-beach"
+    when "Home" then "fas fa-home"
+    when "Medical" then "fas fa-briefcase-medical"
+    when "Saving" then "fas fa-piggy-bank"
+    when "Wedding" then "fas fa-glass-cheers"
+    else
+      "fas fa-question"
+    end
+  end
+
   private
 
   def goal_status
