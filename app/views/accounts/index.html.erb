@@ -1,5 +1,4 @@
 <h1>You have <%= @accounts.count %> <%= @accounts.count == 1 ? "account" : "accounts"  %> with Fin-Man:</h1>
-<<<<<<< HEAD
 <div class="container card-deck">
   <% @accounts.each do |account| %>
     <%= link_to account_path(account.id) do %>
