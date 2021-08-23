@@ -7,7 +7,9 @@ class GoalsController < ApplicationController
     @goal_status = goals_status_count
   end
 
-  def show; end
+  def show
+    @goals_transaction = GoalsTransaction.new
+  end
 
   def new
     @goal = Goal.new
