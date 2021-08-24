@@ -21,7 +21,7 @@
   <%= simple_form_for([@account, @transaction]) do |f| %>
     <%= f.input :recipient %>
     <%= f.input :amount %>
-    <%= f.input :time %>
+    <%= f.input :time, as: :date, html5: true %>
     <%= f.submit class: 'btn btn-primary' %>
   <% end %>
 </div>

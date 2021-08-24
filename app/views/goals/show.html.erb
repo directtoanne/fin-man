@@ -27,7 +27,7 @@
 
   <%= simple_form_for([@goal, @goals_transaction]) do |f| %>
     <%= f.input :amount %>
-    <%= f.input :time %>
+    <%= f.input :time, as: :date, html5: true %>
     <%= f.input :account_id %>
     <%= f.submit class: 'btn btn-primary' %>
   <% end %>
