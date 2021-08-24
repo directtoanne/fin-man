@@ -66,13 +66,12 @@
     <% @goals.each do |goal| %>
       <div class="goal-card card flex-row shadow">
         <div class="goal-img-container">
-          <div id="avatar-progress" class="avatar-progress" data-percent="<%= goal.goal_percent_complete %>"></div>
-          <img class="goal-img" src="https://www.incharge.org/wp-content/uploads/2015/06/Financial-Budget-Goals-300x241.gif">
+          <div id="avatar-progress" class="avatar-progress" data-icon="<%= goal.goal_categories_icon %>" data-percent="<%= goal.goal_percent_decimal.round(2) %>"></div>
         </div>
         <div class="col">
           <div class="row">
             <div class="col">
-              <h4 class="card-title"><i class="card-title-category <%= goal.goal_categories_icon %>"> &nbsp </i><%=goal.name.capitalize%></h4>
+              <h4 class="card-title"><%=goal.name.capitalize%></h4>
             </div>
             <div class="col goal-card-status" style="text-align:right;"><%=goal.current_status%></div>
           </div>

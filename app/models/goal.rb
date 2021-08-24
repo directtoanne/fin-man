@@ -1,9 +1,18 @@
 class Goal < ApplicationRecord
   belongs_to :user
 
-  def goal_percent_complete
-    percent = 100 * current_amount.to_f / target_amount.to_f
-    return percent.round(2)
+  def goal_percent
+    100 * current_amount / target_amount
+  end
+
+  # 34.679823015 - 35
+  def goal_percent_complete 
+    goal_percent.round
+  end
+
+  # 34 - 0.34
+  def goal_percent_decimal 
+    (goal_percent / 100).round(2)
   end
 
   def current_status

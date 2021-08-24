@@ -12,7 +12,7 @@ goalsList.forEach(function(goal){
     to: {color: '#068140', a:1},
     text: {
       value: '',
-      className: 'progressbar__label fas fa-umbrella-beach',
+      className: "progressbar__label " + goal.dataset.icon,
       style: {
         color: '#f00',
         position: 'absolute',
@@ -25,11 +25,9 @@ goalsList.forEach(function(goal){
             value: 'translate(-50%, -50%)',
         }
     },
-    // Set default step function for all animate calls
     step: function(state, circle) {
       circle.path.setAttribute('stroke', state.color);
     }
   }});
-  
-  circle.animate(0.80);
+  circle.animate(goal.dataset.percent);
 });
