@@ -1,3 +1,4 @@
+<%= javascript_pack_tag 'progressBar', 'data-turbolinks-track': 'reload', defer: true %>
 <script>
   console.log("Goals Count: <%= @goals.count %>")
 
@@ -65,14 +66,14 @@
     <% @goals.each do |goal| %>
       <div class="goal-card card flex-row shadow">
         <div class="goal-img-container">
-          <img class="goal-img" src="https://www.incharge.org/wp-content/uploads/2015/06/Financial-Budget-Goals-300x241.gif" alt="" class="card-img">
+          <div id="avatar-progress" class="avatar-progress" data-icon="<%= goal.goal_categories_icon %>" data-percent="<%= goal.goal_percent_decimal.round(2) %>"></div>
         </div>
         <div class="col">
           <div class="row">
             <div class="col">
-              <h5 class="card-title"><%=goal.name.capitalize%></h5>
+              <h4 class="card-title"><%=goal.name.capitalize%></h4>
             </div>
-            <div class="col" style="text-align:right;"><%=goal.current_status%></div>
+            <div class="col goal-card-status" style="text-align:right;"><%=goal.current_status%></div>
           </div>
           <p>Goal progress: <%= goal.current_amount ? goal.current_amount : 0 %> / <%= goal.target_amount %></p>
           <p>Due Date: <%= goal.pretty_date(goal.target_due_date) %></p>

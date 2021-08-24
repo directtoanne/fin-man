@@ -45,7 +45,7 @@ class GoalsController < ApplicationController
 
   def goal_strong_params
     params.require(:goal).permit(
-      :name, :target_amount, :target_due_date, :start_date
+      :name, :category, :target_amount, :target_due_date, :start_date, :completed
       )
   end
 
