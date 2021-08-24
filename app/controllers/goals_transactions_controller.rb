@@ -5,6 +5,8 @@ class GoalsTransactionsController < ApplicationController
     authorize @goal
     @goals_transaction.goal = @goal
     @goals_transaction.save!
+    @goal.current_amount =+ @goals_transaction.amount
+    @goal.save!
     redirect_to goal_path(@goal)
   end
 
