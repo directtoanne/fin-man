@@ -4,17 +4,18 @@ goalsList.forEach(function(goal){
   var circle = new ProgressBar.Circle(goal, {
     color: '#068140',
     trailColor: '#eee',
-    trailWidth: 1,
-    duration: 1400,
+    trailWidth: 2,
+    duration: 2000,
     easing: 'bounce',
     strokeWidth: 6,
-    from: {color: '#068140', a:0},
+    from: {color: '#FF0000', a:0},
     to: {color: '#068140', a:1},
+    warnings: false,
     text: {
-      value: '',
+      value: '<div class="avatar-progress-text">'+ goal.dataset.percent * 100 +'%</div>',
       className: "progressbar__label " + goal.dataset.icon,
       style: {
-        color: '#f00',
+        color: '#975B53',
         position: 'absolute',
         left: '50%',
         top: '50%',

@@ -2,11 +2,17 @@
   width: 100%;
 }
 
-#test {
+#avatar-progress {
   margin: 2%;
   width: 98%;
   //background-image: url('https://www.incharge.org/wp-content/uploads/2015/06/Financial-Budget-Goals-300x241.gif');
   border-radius: 50%;
+}
+
+.avatar-progress-text {
+  font-size: 20px;
+  text-align: center;
+  padding-top: 30px;
 }
 
 .progressbar__label {
