@@ -29,12 +29,8 @@ ActiveRecord::Schema.define(version: 2021_08_21_130752) do
 
   create_table "goals", force: :cascade do |t|
     t.string "name"
-<<<<<<< HEAD
-    t.decimal "target_amount"
-=======
     t.text "category", default: "Other"
     t.decimal "target_amount", default: "0.0"
->>>>>>> ac3befc86e20703c31a74340c2baf4395d8dca70
     t.date "target_due_date"
     t.decimal "current_amount"
     t.date "start_date"
