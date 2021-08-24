@@ -1,6 +1,7 @@
 <script>
   console.log("Goal Percentage: <%= @goal.goal_percent_complete %>")
   console.log("Goal Status: <%= @goal.current_status %>")
+  console.log("Goal Category: <%= @goal.category %>")
   console.log("Goal Due: <%= @goal.pretty_date(@goal.target_due_date) %>")
 </script>
 <div class="container">

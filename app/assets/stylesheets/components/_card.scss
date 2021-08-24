@@ -1,6 +1,13 @@
 .goal-card {
   border-radius: 5px;
   margin: 15px 0px;
+  border: $dark-coral 2px solid;
+}
+
+@media only screen and (max-width: 770px) {
+  .goal-card-status {
+      display: none;
+  }
 }
 
 .goal-img-container {
@@ -9,11 +16,17 @@
   max-width: 200px !important;
 }
 
-.goal-img-container > .goal-img {
+.goal-img {
   border: rgb(145, 145, 145) 0.5px solid;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  max-width: 200px;
+  width: 100%;
+}
+
+.card-title-category {
+  font-size: 36px;
+  color: $dark-coral;
+  margin-top: 6px;
 }
 
 .account-card {
