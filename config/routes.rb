@@ -5,12 +5,10 @@ Rails.application.routes.draw do
   get "/dashboard", to: "users#dashboard", as: "dashboard"
     
   resources :accounts, except: [ :update, :edit ] do
-    resources :transactions do
-    end
+    resources :transactions, only: [ :create, :delete ]
   end
 
   resources :goals do
-    resources :goals_transactions do
-    end
+    resources :goals_transactions, only: [ :create, :delete ]
   end
 end
