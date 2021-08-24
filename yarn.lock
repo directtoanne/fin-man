@@ -2465,6 +2465,11 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
+countup.js@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.npmjs.org/countup.js/-/countup.js-2.0.8.tgz"
+  integrity sha512-pW3xwwD+hB+xmtI16xFcuLS0D5hSQqPQWkZOdgpKQyzxCquDNo2VCFPkRw12vmvdpnicXVTcjmYiakG6biwINg==
+
 crc-32@~1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/crc-32/-/crc-32-1.2.0.tgz"
