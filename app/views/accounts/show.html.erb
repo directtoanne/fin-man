@@ -4,4 +4,24 @@
   <p class="card-text"><%= @account.account_number %></p>
   <p class="card-text"><%= @account.sort_code %></p>
   <p class="card-text"><%= @account.balance %></p>
+
+  <div class="transactions">
+    <% if @account.transactions.blank? %>
+      <p>Add a transaction to Account <%= @account.account_number %></p>
+    <% else %>
+      <% @account.transactions.each do |transaction| %>
+        <div class="d-flex">
+          <p><%= transaction.amount %></p>
+          <p><%= transaction.recipient %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= simple_form_for([@account, @transaction]) do |f| %>
+    <%= f.input :recipient %>
+    <%= f.input :amount %>
+    <%= f.input :time %>
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
 </div>

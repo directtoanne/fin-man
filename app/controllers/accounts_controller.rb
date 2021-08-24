@@ -6,7 +6,9 @@ class AccountsController < ApplicationController
     @accounts = policy_scope(Account)
   end
 
-  def show; end
+  def show
+    @transaction = Transaction.new
+  end
 
   def new
     @account = Account.new
