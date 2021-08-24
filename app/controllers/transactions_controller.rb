@@ -16,6 +16,13 @@ class TransactionsController < ApplicationController
     redirect_to account_path(@account)
   end
 
+  def index
+    @account = Account.find(params[:account_id])
+    authorize @account
+    @transactions = Transaction.all
+    authorize @transacions
+  end
+
   private
   
   def transaction_strong_params
