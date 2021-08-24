@@ -3,7 +3,7 @@ class Goal < ApplicationRecord
   has_many :goals_transactions
 
   def goal_percent
-    100 * current_amount / target_amount
+    100 * current_amount.to_f / target_amount.to_f
   end
 
   # 34.679823015 - 35
