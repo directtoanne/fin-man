@@ -1,3 +1,4 @@
+require 'json'
 class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
   after_action :authorize_goal, only: [:new]
@@ -5,6 +6,8 @@ class GoalsController < ApplicationController
   def index
     @goals = policy_scope(Goal)
     @goal_status = goals_status_count
+    @goals_total_count = goals_total
+    @goals_data = goals_data
   end
 
   def show
@@ -36,6 +39,10 @@ class GoalsController < ApplicationController
 
   private
 
+  def all_user_goals
+    Goal.all.where(user_id: 1)
+  end
+
   def set_goal
     @goal = Goal.find(params[:id])
     authorize_goal
@@ -58,5 +65,31 @@ class GoalsController < ApplicationController
       goal_status << goal.current_status
     end
     return goal_status
+  end
+
+  def goal_transactions
+    goal_trans = []
+    goals = all_user_goals
+    goals.each do |goal|
+      goal_trans << goal.goals_transactions
+    end
+    return goal_trans
+  end
+
+  def goals_total
+    total = 0
+    all_user_goals.each do |goal|
+      total += goal.current_amount
+    end
+    return total
+  end
+
+  def goals_data
+    data = []
+    goals = all_user_goals
+    goals.each do |goal|
+      data << { goal_name: goal.name, goal_value: goal.current_amount }
+    end
+    return data
   end
 end

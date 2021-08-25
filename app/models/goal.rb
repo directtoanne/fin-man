@@ -7,12 +7,12 @@ class Goal < ApplicationRecord
   end
 
   # 34.679823015 - 35
-  def goal_percent_complete 
+  def goal_percent_complete
     goal_percent.round
   end
 
   # 34 - 0.34
-  def goal_percent_decimal 
+  def goal_percent_decimal
     (goal_percent / 100).round(2)
   end
 
