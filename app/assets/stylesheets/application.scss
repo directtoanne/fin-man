@@ -11,3 +11,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// Alerts
+.alert-warning {
+  color: black;
+  background-color: $bright !important;
+}
+
+.alert-info {
+  color: black;
+  background-color: $greeny !important;
+}
