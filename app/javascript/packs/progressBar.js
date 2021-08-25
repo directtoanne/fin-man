@@ -12,7 +12,7 @@ goalsList.forEach(function(goal){
     to: {color: '#068140', a:1},
     warnings: false,
     text: {
-      value: '<div class="avatar-progress-text">'+ goal.dataset.percent * 100 +'%</div>',
+      value: '<div class="avatar-progress-text">'+ Math.round(goal.dataset.percent * 100) +'%</div>',
       className: "progressbar__label " + goal.dataset.icon,
       style: {
         color: '#975B53',
