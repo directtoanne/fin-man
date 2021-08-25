@@ -3,8 +3,8 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 
 am4core.ready(function() {
   am4core.useTheme(am4themes_animated);
-  var chartID = document.querySelector("#pieChart")
-  var chart = am4core.create('pieChart', am4charts.PieChart);
+  var chartID = document.querySelector("#ampieChart")
+  var chart = am4core.create('ampieChart', am4charts.PieChart);
   chart.hiddenState.properties.opacity = 0;
   console.log(chartID.dataset.pie)
   chart.data = JSON.parse(chartID.dataset.pie);
