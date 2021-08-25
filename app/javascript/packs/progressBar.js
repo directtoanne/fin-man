@@ -1,7 +1,8 @@
-var ProgressBar = require('progressbar.js')
+import { Circle } from 'progressbar.js';
+
 var goalsList = document.querySelectorAll("#avatar-progress")
 goalsList.forEach(function(goal){
-  var circle = new ProgressBar.Circle(goal, {
+  var circle = new Circle(goal, {
     color: '#068140',
     trailColor: '#eee',
     trailWidth: 2,

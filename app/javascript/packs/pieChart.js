@@ -6,9 +6,7 @@ am4core.ready(function() {
   var chartID = document.querySelector("#ampieChart")
   var chart = am4core.create('ampieChart', am4charts.PieChart);
   chart.hiddenState.properties.opacity = 0;
-  console.log(chartID.dataset.pie)
   chart.data = JSON.parse(chartID.dataset.pie);
-  console.log(chart.data)
   
   var series = chart.series.push(new am4charts.PieSeries());
   series.dataFields.value = "goal_value";
