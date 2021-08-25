@@ -2,6 +2,12 @@ class Goal < ApplicationRecord
   belongs_to :user
   has_many :goals_transactions, dependent: :destroy
 
+  def goal_days_till_due
+    due = Date.parse target_due_date.to_s
+    now = Date.parse Time.now.to_s
+    (due - now).to_i
+  end
+
   def goal_percent
     100 * current_amount.to_f / target_amount.to_f
   end
