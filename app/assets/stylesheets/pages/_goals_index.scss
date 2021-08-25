@@ -21,3 +21,10 @@
   font-size: 3.5vw;
   font-family: $body-font;
 }
+
+.goal-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
