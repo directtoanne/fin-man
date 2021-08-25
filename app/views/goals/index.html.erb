@@ -2,28 +2,30 @@
 <%= javascript_pack_tag 'hideShowElement', 'data-turbolinks-track': 'reload', defer: true %>
 <%= javascript_pack_tag 'pieChart', 'data-turbolinks-track': 'reload', defer: true %>
 <%= javascript_pack_tag 'numberCounter', 'data-turbolinks-track': 'reload', defer: true %>
-
 <script>
-function hideShowElement(element_args) {
-  var element = document.getElementById(element_args)
-
-  if (element.style.display === "none") {
-    element.style.display = "";
-  } else {
-    element.style.display = "none";
+  function hideShowElement(element_args) {
+    var element = document.getElementById(element_args)
+  
+    if (element.style.display === "none") {
+      element.style.display = "";
+    } else {
+      element.style.display = "none";
+    }
   }
-}
-console.log('<%=@goals_data%>')
+  console.log('<%=@goals_data%>')
 </script>
-
 <div class="container">
   <h1>Here are your goals</h1>
   <button id="goal-summary" onclick="hideShowElement('goal-summary-chart')" class="btn btn-primary"><i class="fas fa-eye"></i> Summary</button>
   <%= link_to "Create a new goal", new_goal_path, class: "btn btn-primary" %>
   <!-- Goals stats start -->
   <div class="goal-summary-chart row" id="goal-summary-chart">
-    <div class="goal-summary-item col-6">Total Savings: <div id="jsCounter" class="goal-total-counter" data-number="<%= @goals_total_count %>" data-prefix="£"></div></div>
-    <div class="goal-summary-item col-6"><div id="ampieChart" data-pie="<%=@goals_data.to_json%>"></div></div>
+    <div class="goal-summary-item col-6">Total Savings: 
+      <div id="jsCounter" class="goal-total-counter" data-number="<%= @goals_total_count %>" data-prefix="£"></div>
+    </div>
+    <div class="goal-summary-item col-6">
+      <div id="ampieChart" data-pie="<%=@goals_data.to_json%>"></div>
+    </div>
   </div>
   <!-- Goals stats END-->
   <!-- Hide / Show chart on button press -->
@@ -38,7 +40,6 @@ console.log('<%=@goals_data%>')
             <div class="col">
               <h4 class="card-title"><%=goal.name.capitalize%></h4>
             </div>
-            <div class="col goal-card-status" style="text-align:right;"><%=goal.current_status%></div>
           </div>
           <p>Goal progress: <%= goal.current_amount ? goal.current_amount : 0 %> / <%= goal.target_amount %></p>
           <p>Due Date: <%= goal.pretty_date(goal.target_due_date) %></p>

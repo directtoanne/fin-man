@@ -16,7 +16,7 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <% if user_signed_in? && !current_page?(root_path) %>
+    <% if user_signed_in? && current_page?(dashboard_path) %>
       <%= render 'shared/search' %>
     <% end %>
     <%= render 'shared/flashes' %>
