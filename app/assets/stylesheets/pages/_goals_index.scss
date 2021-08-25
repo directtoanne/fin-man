@@ -1,12 +1,23 @@
 .goal-summary-chart {
-  height: 175px;
+  height: 150px;
 }
 
 .goal-summary-item {
- height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 
-#pieChart {
+#ampieChart {
   width: 100%;
   height: 100%;
+}
+
+.goal-total-counter {
+  color: $greeny;
+  font-size: 3.5vw;
+  font-family: $body-font;
 }
