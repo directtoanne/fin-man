@@ -1,6 +1,7 @@
 <%= javascript_pack_tag 'progressBar', 'data-turbolinks-track': 'reload', defer: true %>
 <%= javascript_pack_tag 'hideShowElement', 'data-turbolinks-track': 'reload', defer: true %>
 <%= javascript_pack_tag 'pieChart', 'data-turbolinks-track': 'reload', defer: true %>
+<%= javascript_pack_tag 'numberCounter', 'data-turbolinks-track': 'reload', defer: true %>
 
 <script>
 function hideShowElement(element_args) {
@@ -21,7 +22,7 @@ console.log('<%=@goals_data%>')
   <%= link_to "Create a new goal", new_goal_path, class: "btn btn-primary" %>
   <!-- Goals stats start -->
   <div class="goal-summary-chart row" id="goal-summary-chart">
-    <div class="goal-summary-item col-3 text-center">You have saved a total of: <%= @goals_total_count %></div>
+    <div class="goal-summary-item col-3 text-center">You have saved a total of: <div id="jsCounter" data-number="<%= @goals_total_count %>" data-prefix="£"></div></div>
     <div class="goal-summary-item col-6"><div id="ampieChart" data-pie="<%=@goals_data.to_json%>"></div></div>
     <div class="goal-summary-item col-3">goal</div>
   </div>
