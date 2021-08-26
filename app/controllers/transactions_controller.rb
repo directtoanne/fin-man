@@ -18,9 +18,8 @@ class TransactionsController < ApplicationController
 
   def index
     @account = Account.find(params[:account_id])
-    authorize @account
-    @transactions = Transaction.all
-    authorize @transacions
+    # authorize @account
+    @transactions = policy_scope(Transaction).where(account: @account)
   end
 
   private

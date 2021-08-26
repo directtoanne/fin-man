@@ -28,7 +28,8 @@
       </div>
     <% end %>
   </div>
-
+  </br></br>
+  <h5 class="card-title">Add a transaction</h5>
   <%= simple_form_for([@account, @transaction], remote: true) do |f| %>
     <%= f.input :recipient %>
     <%= f.input :amount %>
