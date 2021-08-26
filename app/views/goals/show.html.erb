@@ -18,7 +18,7 @@
       <% @goal.goals_transactions.each do |goals_transaction| %>
         <div class="d-flex">
           <p><%= goals_transaction.amount %></p>
-          <p><%= goals_transaction.time %></p>
+          <p><%= goals_transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></p>
           <p><%= goals_transaction.account_id %></p>
         </div>
       <% end %>

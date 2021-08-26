@@ -11,29 +11,32 @@
     </div>
   </div>
 
-  <div class="account-transactions">
-    <% if @account.transactions.blank? %>
-      <p>There are currently no transactions for this account. You can add a transaction below.</p>
-    <% else %>
-      <div>
-        <div class="d-flex">
+  <div class="d-flex">
+    <div class="account-transactions m-3">
+      <% if @account.transactions.blank? %>
+        <p>There are currently no transactions for this account. You can add a transaction below.</p>
+      <% else %>
+        <div>
           <p>Here you can see the last 5 transations for this account. If you want to see a full list of transations, please click <b><%= link_to "here", account_transactions_path(@account) %></b>.</p>
+          <% @account.transactions.last(5).reverse.each do |transaction| %>
+            <div class="d-flex">
+              <div class="transacitons-attr">Amount: <%= transaction.amount %></div>
+              <div class="transacitons-attr">Recipient: <%= transaction.recipient %></div>
+              <div class="transacitons-attr">Time: <%= transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></div>
+            </div>
+          <% end %>
         </div>
-        <% @account.transactions.last(5).reverse.each do |transaction| %>
-          <div class="d-flex">
-            <div class="transacitons-attr">Amount: <%= transaction.amount %></div>
-            <div class="transacitons-attr">Recipient: <%= transaction.recipient %></div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+
+    <div class="m-3">
+      <h5 class="card-title">Add a transaction</h5>
+      <%= simple_form_for([@account, @transaction], remote: true) do |f| %>
+        <%= f.input :recipient %>
+        <%= f.input :amount %>
+        <%= f.input :time, as: :date, html5: true %>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
-  </br></br>
-  <h5 class="card-title">Add a transaction</h5>
-  <%= simple_form_for([@account, @transaction], remote: true) do |f| %>
-    <%= f.input :recipient %>
-    <%= f.input :amount %>
-    <%= f.input :time, as: :date, html5: true %>
-    <%= f.submit class: 'btn btn-primary' %>
-  <% end %>
 </div>
