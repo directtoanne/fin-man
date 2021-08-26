@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <div class="container-fluid overflow-hidden">
+    <div class="container-fluid overflow-hidden navbar-lewagon">
       <div class="row vh-100 overflow-auto">
         <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
           <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
@@ -31,7 +31,7 @@
                   <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline"> Dashboard</span></a>
               </li>
               <li>
-                  <a href="goals" class="nav-link px-sm-0 px-2">
+                  <a href="/goals" class="nav-link px-sm-0 px-2">
                   <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline"> Goals</span></a>
               </li>
               <li>
@@ -66,17 +66,14 @@
         </div>
         <div class="col d-flex flex-column h-sm-100">
           <main class="row overflow-auto">
-              <div class="col pt-4">
-                  <% if user_signed_in? && current_page?(dashboard_path) %>
-                    <%= render 'shared/search' %>
-                  <% end %>
-                    <%= render 'shared/flashes' %>
-                  <%= yield %>
-              </div>
+            <div class="col pt-4">
+              <% if user_signed_in? && current_page?(dashboard_path) %>
+                <%= render 'shared/search' %>
+              <% end %>
+                <%= render 'shared/flashes' %>
+              <%= yield %>
+            </div>
           </main>
-          <footer class="row bg-light py-4 mt-auto">
-              <div class="col"> Footer content here... </div>
-          </footer>
         </div>
       </div>
     </div>
