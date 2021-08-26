@@ -28,14 +28,8 @@
       </div>
     <% end %>
   </div>
-<<<<<<< HEAD
 
   <%= simple_form_for([@account, @transaction], remote: true) do |f| %>
-=======
-  </br></br>
-  <h5 class="card-title">Add a transaction</h5>
-  <%= simple_form_for([@account, @transaction]) do |f| %>
->>>>>>> 39e7824bca7e32ec1d36ecda686645abd9c4c080
     <%= f.input :recipient %>
     <%= f.input :amount %>
     <%= f.input :time, as: :date, html5: true %>
