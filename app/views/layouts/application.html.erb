@@ -12,16 +12,15 @@
     <%= render 'shared/amchart' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
   </head>
 
   <body>
     <%= render 'shared/navbar' %>
-    <% if user_signed_in? && !current_page?(root_path) %>
+    <% if user_signed_in? && current_page?(dashboard_path) %>
       <%= render 'shared/search' %>
     <% end %>
     <%= render 'shared/flashes' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

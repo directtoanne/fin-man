@@ -1,28 +1,3 @@
-.goal-card {
-  border-radius: 5px;
-  margin: 15px 0px;
-  border: $dark-coral 2px solid;
-}
-
-@media only screen and (max-width: 770px) {
-  .goal-card-status {
-      display: none;
-  }
-}
-
-.goal-img-container {
-  padding: 0;
-  text-align: left;
-  max-width: 200px !important;
-}
-
-.goal-img {
-  border: rgb(145, 145, 145) 0.5px solid;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  width: 100%;
-}
-
 .card-title-category {
   font-size: 36px;
   color: $dark-coral;

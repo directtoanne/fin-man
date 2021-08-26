@@ -18,7 +18,7 @@
     <% end %>
   </div>
 
-  <%= simple_form_for([@account, @transaction]) do |f| %>
+  <%= simple_form_for([@account, @transaction], remote: true) do |f| %>
     <%= f.input :recipient %>
     <%= f.input :amount %>
     <%= f.input :time, as: :date, html5: true %>
