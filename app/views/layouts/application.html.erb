@@ -41,15 +41,17 @@
             </ul>
 
             <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+              <div class="d-flex">
               <li class="nav-item dropdown">
                 <%= image_tag "https://www.iconninja.com/files/792/280/52/glasses-person-user-male-man-avatar-icon.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <%= link_to "Action", "#", class: "dropdown-item" %>
                   <%= link_to "Another action", "#", class: "dropdown-item" %>
                   <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                 </div>
-              </li>
+              </li><script>console.log('<%= current_user.first_name %>')</script>
+              <p><%= current_user.first_name %></p>
+              </div>
             </div>
             <% else %>
               <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
