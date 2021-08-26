@@ -1,0 +1,69 @@
+.goal-card {
+  border-radius: 5px;
+  margin: 15px 0px;
+  border: $dark-coral 2px solid;
+}
+
+@media only screen and (max-width: 770px) {
+  .goal-card-status {
+    display: none;
+  }
+}
+
+.goal-img-container {
+  padding: 0;
+  text-align: left;
+  max-width: 200px !important;
+}
+
+@media only screen and (max-width: 770px) {
+  .goal-img-container {
+    display: none !important;
+  }
+}
+
+.goal-img {
+  border: rgb(145, 145, 145) 0.5px solid;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 100%;
+}
+
+.goal-summary-chart {
+  height: 150px;
+}
+
+.goal-summary-item {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#ampieChart {
+  width: 100%;
+  height: 100%;
+}
+
+.goal-total-counter {
+  color: $greeny;
+  font-size: 3.5vw;
+  font-family: $body-font;
+}
+
+.goal-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.goal-subject {
+  text-align: center;
+}
+
+.goal-details {
+  text-align: center;
+}

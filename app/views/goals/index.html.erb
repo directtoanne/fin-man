@@ -1,0 +1,85 @@
+<%= javascript_pack_tag 'progressBar', 'data-turbolinks-track': 'reload', defer: true %>
+<%= javascript_pack_tag 'hideShowElement', 'data-turbolinks-track': 'reload', defer: true %>
+<%= javascript_pack_tag 'pieChart', 'data-turbolinks-track': 'reload', defer: true %>
+<%= javascript_pack_tag 'numberCounter', 'data-turbolinks-track': 'reload', defer: true %>
+<script>
+  function hideShowElement(element_args) {
+    var element = document.getElementById(element_args)
+  
+    if (element.style.display === "none") {
+      element.style.display = "";
+    } else {
+      element.style.display = "none";
+    }
+  }
+</script>
+<div class="container">
+  <h1>Here are your goals</h1>
+  <button id="goal-summary" onclick="hideShowElement('goal-summary-chart')" class="btn btn-primary"><i class="fas fa-eye"></i> Summary</button>
+  <%= link_to "Create a new goal", new_goal_path, class: "btn btn-primary" %>
+  <!-- Goals stats start -->
+  <div class="goal-summary-chart row" id="goal-summary-chart">
+    <div class="goal-summary-item col-6">Total Goal Savings: 
+      <div id="jsCounter" class="goal-total-counter" data-number="<%= @goals_total_count %>" data-prefix="£"></div>
+    </div>
+    <div class="goal-summary-item col-6">
+      <div id="ampieChart" data-pie="<%=@goals_data.to_json%>"></div>
+    </div>
+  </div>
+  <!-- Goals stats END-->
+  <!-- Hide / Show chart on button press -->
+  <div class="cards">
+    <% if @goals.count > 0 %>
+      <% @goals.each do |goal| %>
+        <div class="goal-card card flex-row shadow">
+          <div class="col goal-img-container">
+            <div id="avatar-progress" class="avatar-progress" data-icon="<%= goal.goal_categories_icon %>" data-percent="<%= goal.goal_percent_decimal.round(2) %>"></div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <h4 class="card-title m-0"><%=goal.name.capitalize%></h4>
+                <div class="goal-subject"><%=goal.subject%></div>
+              </div>
+            </div>
+            <br>
+            <div class="goal-details">
+              <div>Saved: £<%= goal.current_amount ? goal.current_amount : 0 %> of £<%= goal.target_amount%></div>
+              <div>Target: <%= goal.pretty_date(goal.target_due_date) %> - <%=goal.goal_days_till_due%> Days</div>
+            </div>
+          </div>
+          <div class="goal-actions col-1">
+            <%= link_to goal_path(goal) do %>
+              <lord-icon data-bs-toggle="tooltip" data-bs-placement="left" title="See Goal Details"
+                src="https://cdn.lordicon.com/tyounuzx.json"
+                trigger="hover"
+                colors="primary:#6d162e,secondary:#9c9c9c"
+                style="width:60px;height:60px">
+              </lord-icon>
+            <% end %>
+            <%= link_to edit_goal_path(goal) do %>
+              <lord-icon data-bs-toggle="tooltip" data-bs-placement="left" title="Edit Goal"
+                src="https://cdn.lordicon.com/sbiheqdr.json"
+                trigger="hover"
+                colors="primary:#6d162e,secondary:#9c9c9c"
+                style="width:60px;height:60px">
+              </lord-icon>
+            <% end %>
+            <%= link_to goal_path(goal), method: :delete, data: { confirm: 'Are you sure you want to delete this Goal?' } do %>
+              <lord-icon data-bs-toggle="tooltip" data-bs-placement="left" title="Delete Goal"
+                src="https://cdn.lordicon.com/gsqxdxog.json"
+                trigger="hover"
+                colors="primary:#6d162e,secondary:#9c9c9c"
+                style="width:60px;height:60px">
+              </lord-icon>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center">
+        <h2>You currently have no goals set.
+          <h2></div>
+        <% end %>
+      </div>
+    </div>

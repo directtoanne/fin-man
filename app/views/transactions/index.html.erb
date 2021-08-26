@@ -1,0 +1,6 @@
+<% @transactions.reverse.each do |transaction| %>
+  <div class="d-flex">
+    <div class="transacitons-attr">Amount: <%= transaction.amount %></div>
+    <div class="transacitons-attr">Recipient: <%= transaction.recipient %></div>
+  </div>
+<% end %>

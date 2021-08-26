@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get "/dashboard", to: "users#dashboard", as: "dashboard"
+    
+  resources :accounts, except: [ :update, :edit ] do
+    resources :transactions, only: [ :create, :delete, :index ]
+  end
+
+  resources :goals do
+    resources :goals_transactions, only: [ :create, :delete ]
+  end
 end
