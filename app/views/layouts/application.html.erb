@@ -18,54 +18,56 @@
   <body>
     <div class="container-fluid overflow-hidden navbar-lewagon">
       <div class="row vh-100 overflow-auto">
-        <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
-          <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
-            <%= link_to "#", class: "d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none navbar-brand" do %>
-              <%= image_tag 'fm-logo-white.png' %>
-            <% end %>
+        <% unless action_name == "home" %>
+          <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
+            <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+              <%= link_to "#", class: "d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none navbar-brand" do %>
+                <%= image_tag 'fm-logo-white.png' %>
+              <% end %>
 
-            <% if user_signed_in? %>
-            <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
-              <li>
-                  <a href="/dashboard" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2">
-                  <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline"> Dashboard</span></a>
-              </li>
-              <li>
-                  <a href="/goals" class="nav-link px-sm-0 px-2">
-                  <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline"> Goals</span></a>
-              </li>
-              <li>
-                  <a href="/accounts" class="nav-link px-sm-0 px-2">
-                  <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline"> Accounts</span> </a>
-              </li>
-            </ul>
-
-            <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-              <div class="d-flex">
-              <li class="nav-item dropdown">
-                <%= image_tag "https://www.iconninja.com/files/792/280/52/glasses-person-user-male-man-avatar-icon.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <%= link_to "Action", "#", class: "dropdown-item" %>
-                  <%= link_to "Another action", "#", class: "dropdown-item" %>
-                  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-                </div>
-              </li>
-              <p><%= current_user.first_name %></p>
-              </div>
-            </div>
-            <% else %>
+              <% if user_signed_in? %>
               <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
-              <li class="nav-item">
-                  <a href="#" class="nav-link px-sm-0 px-2">
-                  <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline"> Home</span></a>
-              </li>
+                <li>
+                    <a href="/dashboard" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2">
+                    <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline"> Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="/goals" class="nav-link px-sm-0 px-2">
+                    <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline"> Goals</span></a>
+                </li>
+                <li>
+                    <a href="/accounts" class="nav-link px-sm-0 px-2">
+                    <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline"> Accounts</span> </a>
+                </li>
+              </ul>
 
               <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-                <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+                <div class="d-flex">
+                <li class="nav-item dropdown">
+                  <%= image_tag "https://www.iconninja.com/files/792/280/52/glasses-person-user-male-man-avatar-icon.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <%= link_to "Action", "#", class: "dropdown-item" %>
+                    <%= link_to "Another action", "#", class: "dropdown-item" %>
+                    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                  </div>
+                </li>
+                <p><%= current_user.first_name %></p>
+                </div>
               </div>
-            <% end %>
+              <% else %>
+                <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-sm-0 px-2">
+                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline"> Home</span></a>
+                </li>
+
+                <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+                  <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
         <div class="col d-flex flex-column h-sm-100">
           <main class="row overflow-auto">
             <div class="col pt-4">
