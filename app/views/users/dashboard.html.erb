@@ -1,9 +1,9 @@
 <h1>Welcome to your Dashboard!</h1>
 <div>
-  <p>You have <%= @accounts.count %> accounts in total.</p>
+<p>You have <%= pluralize(@accounts.count, 'account') %> in total.</p>
 </div>
 <div>
-  <p>Your <%= @goals.count %> goals are the following:</p>
+  <p>See below your <%= pluralize(@goals.count, 'goals') %>:</p>
   <% @goals.each do |g| %>
     <p> - <%= g.name %></p>
   <% end %>
