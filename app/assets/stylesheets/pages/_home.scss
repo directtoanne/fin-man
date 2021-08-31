@@ -59,48 +59,29 @@ body {
   background: lightgrey;
   height: 90%;
 }
+
 .card {
-  width: 30%;
-  height: 400px;
+  width: 20%;
+  height: 300px;
 }
+
+.card-group {
+  justify-content: space-around;
+  position: absolute;
+  top: 60vh;
+  left: 6.5vw;
+}
+
 .card-image {
-  width: 100%;
-  height: 100%;
+  width: 25vw;
+  height: 35vh;
   object-fit: cover;
-
-}
-.card-product {
-  overflow: hidden;
-  height: 120px;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
+  border-radius: 4%;
+  border: 4px solid $dark;
+  position: relative;
+  margin-right: 5vw;
 }
 
-.card-product img {
-  height: 100%;
-  width: 120px;
-  object-fit: cover;
-}
-
-.card-product h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.card-product p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
-
-.card-product .card-product-infos {
-  padding: 16px;
-}
 .flash {
   padding: 16px 24px;
   display: flex;
@@ -111,17 +92,21 @@ body {
   border-radius: 4px;
   margin: 8px;
 }
+
 .features-layout {
 display: flex;
 justify-content: center;
 margin-top:80px;
 }
+
 .features-list{
   margin-right: 20px;
 }
+
 .features-images{
 width: 40%;
 }
+
 .embed {
   width: 400px;
   height: 200%;
@@ -138,9 +123,11 @@ width: 40%;
 .flash-danger {
   border: 2px solid #FD1015;
 }
+
 .carousel-item{
   height: 100vh;
 }
+
 .banner {
   background-size: cover;
   background-position: center;
@@ -161,16 +148,24 @@ width: 40%;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
+
 .catchline {
   position: absolute;
-  bottom: 400px;
+  bottom: 50vh;
+  left: 14vw;
 }
+
 .homepage_logo {
   position: absolute;
-  top: 20px;
+  top: 4vh;
+  left: 2vw;
   z-index:2;
 }
+
 .homepage_logo img {
-  width: 90px;
-  height: 40px;
+  width: 24vw;
+}
+
+.d-block img {
+  background: rgba(0, 0, 0, 0.5);
 }
