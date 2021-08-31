@@ -2,6 +2,14 @@ class Goal < ApplicationRecord
   belongs_to :user
   has_many :goals_transactions, dependent: :destroy
 
+  def goal_complete?
+    completed?
+  end
+
+  def mark_goal_complete
+    complete_goal
+  end
+
   def goal_days_till_due
     due = Date.parse target_due_date.to_s
     now = Date.parse Time.now.to_s
@@ -9,7 +17,12 @@ class Goal < ApplicationRecord
   end
 
   def goal_percent
-    100 * current_amount.to_f / target_amount.to_f
+    percent = 100 * current_amount.to_f / target_amount.to_f
+    if percent.to_i > 100
+      return 100.to_f
+    else
+      return percent
+    end
   end
 
   # 34.679823015 - 35
@@ -70,5 +83,9 @@ class Goal < ApplicationRecord
     else
       "Active"
     end
+  end
+
+  def complete_goal
+    completed = true unless completed?
   end
 end
