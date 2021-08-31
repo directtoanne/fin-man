@@ -3,7 +3,7 @@
 <p>You have <%= pluralize(@accounts.count, 'account') %> in total.</p>
 </div>
 <div>
-  <p>See below your <%= pluralize(@goals.count, 'goals') %>:</p>
+  <p>See below your <%= pluralize(@goals.count, 'goal') %>:</p>
   <% @goals.each do |g| %>
     <p> - <%= g.name %></p>
   <% end %>
