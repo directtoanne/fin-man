@@ -32,21 +32,21 @@
     <% if @goals.count > 0 %>
       <% @goals.each do |goal| %>
       <script>console.log('<%=goal.goal_complete?%>')</script>
-        <div class="goal-card card flex-row shadow">
+        <div class="goal-card card flex-row shadow p-2">
           <div class="col goal-img-container">
             <div id="avatar-progress" class="avatar-progress" data-icon="<%= goal.goal_categories_icon %>" data-percent="<%= goal.goal_percent_decimal.round(2) %>"></div>
           </div>
           <div class="col">
             <div class="row">
               <div class="col">
-                <h4 class="card-title m-0"><%=goal.name.capitalize%></h4>
+                <h4 class="card-title m-0"><%=goal.name.capitalize%></h4><br>
                 <div class="goal-subject"><%=goal.subject%></div>
               </div>
             </div>
             <br>
             <div class="goal-details">
               <div>Saved: £<%= goal.current_amount ? goal.current_amount : 0 %> / £<%= goal.target_amount%></div>
-              <div>Target: <%= goal.pretty_date(goal.target_due_date) %> - <%=goal.goal_days_till_due%> Days</div>
+              <div>Target: <%= goal.pretty_date(goal.target_due_date) %> - <%=goal.goal_days_till_due%> Days Left</div>
             </div>
           </div>
           <div class="goal-actions col-1">
