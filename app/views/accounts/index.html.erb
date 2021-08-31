@@ -2,7 +2,7 @@
 <div class="container card-deck">
   <% @accounts.each do |account| %>
     <%= link_to account_path(account.id) do %>
-      <div class="card d-flex account-card">
+      <div class="account-card">
         <h5 class="card-title"><%= account.bank_name %></h5>
         <p class="card-text">Balance: <%= account.currency %><%= '%.2f' % account.balance %></p>
         <p class="card-text">Account number: <%= account.account_number %></p>
