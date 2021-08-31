@@ -24,14 +24,21 @@
 
 .navbar-brand img {
   width: 100%;
+  margin-bottom: 18px;
 }
 
 .navbar-lewagon li {
   font-size: 1.2rem;
   text-align: center;
+  margin-bottom: 8px;
 }
 
 .dropdown li {
   list-style-type: none;
   margin-right: 16px;
+}
+
+.dropdown-menu {
+  background-color: $dark;
+  border: 2px solid $dark-coral;
 }

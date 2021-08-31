@@ -19,12 +19,12 @@
       <div class="row vh-100 overflow-auto">
         <% unless action_name == "home" %>
           <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
-            <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
-              <%= link_to "#", class: "d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none navbar-brand" do %>
+            <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start">
+              <%= link_to "#", class: "d-flex align-items-center mt-2 pb-sm-3 mb-md-0 me-md-auto text-decoration-none navbar-brand" do %>
                 <%= image_tag 'fm-logo-white.png' %>
               <% end %>
               <% if user_signed_in? %>
-              <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+              <ul class="nav nav-pills ml-2 flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
                 <li>
                     <a href="/dashboard" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline"> Dashboard</span></a>
@@ -39,7 +39,7 @@
                 </li>
               </ul>
 
-              <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+              <div class="dropdown ml-2 py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
                 <div class="d-flex justify-content-between">
                   <li class="nav-item dropdown">
                     <%= image_tag "https://www.iconninja.com/files/792/280/52/glasses-person-user-male-man-avatar-icon.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
