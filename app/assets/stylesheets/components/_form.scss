@@ -5,6 +5,20 @@
   left: 23.5vw;
 }
 
+input[type = "submit"] {
+  color: antiquewhite;
+}
+
 input[type = "submit"]:hover {
-  color: $light-coral;
+  color: $dark-coral;
+  transition: 0.25s;
+  background-color: rgb(240, 207, 218);
+  border: 1px solid antiquewhite;
+}
+
+.btn-primary:hover {
+  color: $dark-coral;
+  transition: 0.25s;
+  background-color: rgb(240, 207, 218);
+  border: 1px solid antiquewhite;
 }

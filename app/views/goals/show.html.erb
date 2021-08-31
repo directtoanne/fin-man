@@ -4,13 +4,13 @@
   console.log("Goal Category: <%= @goal.category %>")
   console.log("Goal Due: <%= @goal.pretty_date(@goal.target_due_date) %>")
 </script>
-<div class="container">
-  <h1><%= @goal.name %></h1>
+<div class="container mt-4">
+  <h1><%= @goal.name %></h1><br>
   <div class="progress m-auto" style="height:20px;width:100%;">
     <div class="progress-bar progress-bar-striped progress-bar-animated <%= @goal.progress_color %>" role="progressbar" aria-valuenow="<%=@goal.current_amount%>" aria-valuemin="0" aria-valuemax="<%=@goal.target_amount%>" style="width: <%= @goal.goal_percent_complete %>%"><%= @goal.goal_percent_complete %>%</div>
-  </div>
+  </div><br>
   <%="You have already saved #{@goal.current_amount ? @goal.current_amount : 0} towards your goal and the target that you've set is #{@goal.target_amount}. The due date is currently #{@goal.target_due_date}." %>
-
+  <br>
   <div class="transactions">
     <% if @goal.goals_transactions.blank? %>
       <p>Add a transaction to Goal <%= @goal.name %></p>
@@ -27,11 +27,10 @@
 
   <%= simple_form_for([@goal, @goals_transaction], remote: true) do |f| %>
     <%= f.input :amount %>
-    <%= f.input :time, as: :date, html5: true %>
     <%= f.input :account_id %>
     <%= f.submit class: 'btn btn-primary' %>
   <% end %>
 
-  <p><%= link_to "Delete", goal_path(@goal), method: :delete, data: { confirm: "Are you sure?" } %></p>
-  <p><%= link_to "Back to all your goals", goals_path %></p>
+  <p><%= link_to "Delete", goal_path(@goal), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %></p>
+  <p><%= link_to "Back to all your goals", goals_path, class: "btn btn-primary" %></p>
 </div>

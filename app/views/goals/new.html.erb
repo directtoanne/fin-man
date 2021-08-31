@@ -1,12 +1,11 @@
-<div class="form-container text-center">
-  <h3>Hello, <%= current_user.first_name %>! Just fill in this form already if u wanna add a goal:</h3>
+<div class="form-container text-center mt-4">
+  <h3><%= current_user.first_name %>, fill in this form to add a goal:</h3>
   <%= simple_form_for(@goal) do |goal| %>
     <%= goal.input :name %>
     <%= goal.input :subject %>
     <%= goal.input :category, collection: @goal.goal_categories %>
     <%= goal.input :target_amount %>
     <%= goal.input :target_due_date, as: :date, html5: true %>
-    <%= goal.input :start_date, as: :date, html5: true %>
     <%= goal.submit class: 'btn btn-primary' %>
   <% end %>
 </div>

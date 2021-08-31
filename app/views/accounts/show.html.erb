@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4">
   <h5 class="card-title"><%= @account.bank_name %></h5>
 
   <div class="account-details">
@@ -34,7 +34,6 @@
       <%= simple_form_for([@account, @transaction], remote: true) do |f| %>
         <%= f.input :recipient %>
         <%= f.input :amount %>
-        <%= f.input :time, as: :date, html5: true %>
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
     </div>
