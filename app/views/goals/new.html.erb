@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="form-container text-center">
   <h3>Hello, <%= current_user.first_name %>! Just fill in this form already if u wanna add a goal:</h3>
   <%= simple_form_for(@goal) do |goal| %>
     <%= goal.input :name %>

@@ -1,0 +1,10 @@
+.form-container {
+  width: 570px;
+  height: 700px;
+  position: relative;
+  left: 23.5vw;
+}
+
+input[type = "submit"]:hover {
+  color: $light-coral;
+}
