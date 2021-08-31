@@ -4,7 +4,6 @@
     <title>FinMan</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= favicon_link_tag 'fm-icon-trans-bg.png'%>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +14,7 @@
     <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
   </head>
 
-  <body class="m-0">
+  <body>
     <div class="container-fluid overflow-hidden navbar-lewagon">
       <div class="row vh-100 overflow-auto">
         <% unless action_name == "home" %>
@@ -24,21 +23,6 @@
               <%= link_to "#", class: "d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none navbar-brand" do %>
                 <%= image_tag 'fm-logo-white.png' %>
               <% end %>
-
-            <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-              <div class="d-flex">
-                <li class="nav-item dropdown">
-                  <%= image_tag "https://www.iconninja.com/files/792/280/52/glasses-person-user-male-man-avatar-icon.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <%= link_to "Action", "#", class: "dropdown-item" %>
-                    <%= link_to "Another action", "#", class: "dropdown-item" %>
-                    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-                  </div>
-                </li>
-                <p><%= current_user.first_name %></p>
-              </div>
-            </div>
-            <% else %>
               <% if user_signed_in? %>
               <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
                 <li>
@@ -56,16 +40,16 @@
               </ul>
 
               <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-                <div class="d-flex">
-                <li class="nav-item dropdown">
-                  <%= image_tag "https://www.iconninja.com/files/792/280/52/glasses-person-user-male-man-avatar-icon.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <%= link_to "Action", "#", class: "dropdown-item" %>
-                    <%= link_to "Another action", "#", class: "dropdown-item" %>
-                    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-                  </div>
-                </li>
-                <p><%= current_user.first_name %></p>
+                <div class="d-flex justify-content-between">
+                  <li class="nav-item dropdown">
+                    <%= image_tag "https://www.iconninja.com/files/792/280/52/glasses-person-user-male-man-avatar-icon.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <%= link_to "Action", "#", class: "dropdown-item" %>
+                      <%= link_to "Another action", "#", class: "dropdown-item" %>
+                      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                    </div>
+                  </li>
+                  <p><%= current_user.first_name %></p>
                 </div>
               </div>
               <% else %>

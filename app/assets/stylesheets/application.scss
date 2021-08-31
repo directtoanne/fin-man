@@ -15,6 +15,11 @@
 @import "pages/home";
 
 // Alerts
+
+body {
+  margin: 0;
+}
+
 .alert-warning {
   color: black;
   background-color: $bright !important;
