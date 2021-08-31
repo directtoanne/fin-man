@@ -1,9 +1,21 @@
 .navbar-lewagon {
-  height: 100%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
+  background-color: $dark-coral;
+  color: antiquewhite;
+}
+
+.navbar-lewagon a:hover {
+  color: $light-coral;
+  transition: 0.3s;
+}
+
+.navbar-lewagon p {
+  color: antiquewhite;
+  font-size: 1.2rem;
+  padding-top: 6px;
+}
+
+.navbar-lewagon a {
+  color: antiquewhite;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -14,6 +26,12 @@
   width: 100%;
 }
 
-.navbar-nav li a {
-  color: $light-coral !important;
+.navbar-lewagon li {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.dropdown li {
+  list-style-type: none;
+  margin-right: 16px;
 }
