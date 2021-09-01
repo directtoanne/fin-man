@@ -36,3 +36,5 @@ goalsList.forEach(function (goal) {
   });
   circle.animate(goal.dataset.percent);
 });
+
+export { goalsList };

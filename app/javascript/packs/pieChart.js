@@ -21,3 +21,5 @@ am4core.ready(function() {
   series.labels.template.text = "{goal_name}";
   
   });
+
+export { am4core, am4charts };
