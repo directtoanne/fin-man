@@ -4,33 +4,55 @@
   console.log("Goal Category: <%= @goal.category %>")
   console.log("Goal Due: <%= @goal.pretty_date(@goal.target_due_date) %>")
 </script>
-<div class="container mt-4">
-  <h1><%= @goal.name %></h1><br>
+
+<div class="container mt-4 text-center">
+  <h1><div class="<%= @goal.goal_categories_icon %>"></div> - <%= @goal.name %></h1><br>
+  <p class="card-text details-card-title"><%= @goal.subject %></p>
   <div class="progress m-auto" style="height:20px;width:100%;">
     <div class="progress-bar progress-bar-striped progress-bar-animated <%= @goal.progress_color %>" role="progressbar" aria-valuenow="<%=@goal.current_amount%>" aria-valuemin="0" aria-valuemax="<%=@goal.target_amount%>" style="width: <%= @goal.goal_percent_complete %>%"><%= @goal.goal_percent_complete %>%</div>
-  </div><br>
-  <%="You have already saved #{@goal.current_amount ? @goal.current_amount : 0} towards your goal and the target that you've set is #{@goal.target_amount}. The due date is currently #{@goal.target_due_date}." %>
-  <br>
-  <div class="transactions">
-    <% if @goal.goals_transactions.blank? %>
-      <p>Add a transaction to Goal <%= @goal.name %></p>
-    <% else %>
-      <% @goal.goals_transactions.each do |goals_transaction| %>
-        <div class="d-flex">
-          <p><%= goals_transaction.amount %></p>
-          <p><%= goals_transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></p>
-          <p><%= goals_transaction.account_id %></p>
-        </div>
-      <% end %>
-    <% end %>
   </div>
 
-  <%= simple_form_for([@goal, @goals_transaction]) do |f| %>
-    <%= f.input :amount %>
-    <%= f.collection_select :account_id, Account.order(:account_number).where(user_id: current_user.id), :id, :account_number %>
-    <%= f.submit class: 'btn btn-primary' %>
-  <% end %>
+  <div class="account-details">
+    <div class="details-card-text">
+      <div>Amount Saved: £<%= @goal.current_amount %></div>
+      <div>Goal Amount: £<%= @goal.target_amount %></div>
+      <div>Due Date: <%= @goal.target_due_date %></div>
+      <div>Amount Left: £<%= @goal.target_amount - @goal.current_amount %></div>
+    </div>
+  </div>
 
-  <p><%= link_to "Delete", goal_path(@goal), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %></p>
-  <p><%= link_to "Back to all your goals", goals_path, class: "btn btn-primary" %></p>
+  <div class="d-flex">
+    <div class="account-transactions m-3">
+      <% if @goal.goals_transactions.blank? %>
+        <p>You haven't put aside any money towards this goal. You can add your savings here:</p>
+      <% else %>
+        <div>
+          <p>These are the last 5 savings you've put aside for this goal. A full list of your deposit history can be found <b><%= link_to "here", goal_goals_transactions_path(@goal) %></b>.</p>
+          <% @goal.goals_transactions.last(5).reverse.each do |transaction| %>
+            <div class="d-flex justify-content-between">
+              <div class="transacitons-attr">Amount: £<%= transaction.amount %></div>
+              <div class="transacitons-attr">Account: <%= Account.find(transaction.account_id).bank_name %> <%= Account.find(transaction.account_id).account_number %></div>
+              <div class="transacitons-attr">Time: <%= transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="m-3">
+      <h5 class="card-title">Add Savings to this Goal</h5>
+      <%= simple_form_for([@goal, @goals_transaction]) do |f| %>
+        <%= f.input :amount %>
+        <%= f.collection_select :account_id, Account.order(:account_number).where(user_id: current_user.id), :id, :account_number %>
+        <%= f.submit class: 'btn btn-primary mt-2' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-flex p-3 delete-and-return">
+    <%= link_to goal_path(@goal), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <button class="btn btn-primary"><i class="bi bi-trash"></i> Delete</button>
+    <% end %>
+    <%= link_to "All Goals", goals_path, class: "btn btn-primary ml-3" %>
+  </div>
 </div>

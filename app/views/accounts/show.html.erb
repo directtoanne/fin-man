@@ -1,11 +1,11 @@
-<div class="container mt-4">
+<div class="container mt-4 text-center">
   <h5 class="card-title"><%= @account.bank_name %></h5>
 
   <div class="account-details">
-    <p class="card-text details-card-title">Account details</p>
+    <p class="card-text details-card-title">Account details:</p>
     <div class="details-card-text">
-      <div>Account balance: <%= @account.balance %></div>
-      <div>Account currency: <%= @account.currency %></div>
+      <div>Account balance: £<%= @account.balance %></div>
+      <div>Account currency: GBP</div>
       <div>Account number: <%= @account.account_number %></div>
       <div>Account sort code: <%= @account.sort_code %></div>
     </div>
@@ -14,13 +14,13 @@
   <div class="d-flex">
     <div class="account-transactions m-3">
       <% if @account.transactions.blank? %>
-        <p>There are currently no transactions for this account. You can add a transaction below.</p>
+        <p>There are currently no transactions for this account. You can add a transaction here:</p>
       <% else %>
         <div>
-          <p>Here you can see the last 5 transations for this account. If you want to see a full list of transations, please click <b><%= link_to "here", account_transactions_path(@account) %></b>.</p>
+          <p>These are the last 5 transactions for this account. Your full transaction history for this account can be found <b><%= link_to "here", account_transactions_path(@account) %></b>.</p>
           <% @account.transactions.last(5).reverse.each do |transaction| %>
-            <div class="d-flex">
-              <div class="transacitons-attr">Amount: <%= transaction.amount %></div>
+            <div class="d-flex justify-content-between">
+              <div class="transacitons-attr">Amount: £<%= transaction.amount %></div>
               <div class="transacitons-attr">Recipient: <%= transaction.recipient %></div>
               <div class="transacitons-attr">Time: <%= transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></div>
             </div>
@@ -37,5 +37,12 @@
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
     </div>
+  </div>
+
+  <div class="d-flex p-3 delete-and-return">
+    <%= link_to account_path(@account), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <button class="btn btn-primary"><i class="bi bi-trash"></i> Delete</button>
+    <% end %>
+    <%= link_to "All Accounts", accounts_path, class: "btn btn-primary ml-3" %>
   </div>
 </div>

@@ -1,7 +1,6 @@
 <div class="form-container text-center mt-4">
   <h3><%= current_user.first_name %>, fill in this form to add an account:</h3>
   <%= simple_form_for(@account) do |a| %>
-    <%= a.input :currency %>
     <%= a.input :bank_name %>
     <%= a.input :account_number %>
     <%= a.input :sort_code %>
