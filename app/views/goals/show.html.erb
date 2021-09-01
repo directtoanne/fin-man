@@ -41,7 +41,7 @@
 
     <div class="m-3">
       <h5 class="card-title">Add Savings to this Goal</h5>
-      <%= simple_form_for([@goal, @goals_transaction]) do |f| %>
+      <%= simple_form_for([@goal, @goals_transaction], remote: true) do |f| %>
         <%= f.input :amount %>
         <%= f.collection_select :account_id, Account.order(:account_number).where(user_id: current_user.id), :id, :account_number %>
         <%= f.submit class: 'btn btn-primary mt-2' %>

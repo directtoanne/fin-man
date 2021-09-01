@@ -1,5 +1,8 @@
 <div class="container mt-4 text-center">
-  <h5 class="card-title"><%= @account.bank_name %></h5>
+  <div class="d-flex justify-content-center">
+    <%= image_tag "icons/#{@account.account_categories_icon}", class: "bank-icon mr-2" %>
+    <h5 class="card-title">- <%= @account.bank_name %></h5>
+  </div>
 
   <div class="account-details">
     <p class="card-text details-card-title">Account details:</p>
@@ -7,7 +10,7 @@
       <div>Account balance: £<%= @account.balance %></div>
       <div>Account currency: GBP</div>
       <div>Account number: <%= @account.account_number %></div>
-      <div>Account sort code: <%= @account.sort_code %></div>
+      <div>Account sort code: <%= @account.sort_code_pretty %></div>
     </div>
   </div>
 

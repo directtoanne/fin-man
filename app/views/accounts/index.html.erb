@@ -5,10 +5,13 @@
     <% @accounts.each do |account| %>
       <%= link_to account_path(account.id) do %>
         <div class="account-card">
-          <h5 class="card-title"><%= account.bank_name %></h5>
+          <div class="d-flex justify-content-center">
+            <%= image_tag "icons/#{account.account_categories_icon}", class: "bank-icon mr-2" %>
+            <h5 class="card-title">- <%= account.bank_name %></h5>
+          </div>
           <p class="card-text">Balance: £<%= '%.2f' % account.balance %></p>
           <p class="card-text">Account number: <%= account.account_number %></p>
-          <p class="card-text">Sort code: <%= account.sort_code %></p>
+          <p class="card-text">Sort code: <%= account.sort_code_pretty %></p>
         </div>
       <% end %>
     <% end %>
