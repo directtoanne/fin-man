@@ -27,7 +27,7 @@
 
   <%= simple_form_for([@goal, @goals_transaction], remote: true) do |f| %>
     <%= f.input :amount %>
-    <%= f.input :account_id %>
+    <%= f.collection_select :account_id, Account.order(:account_number).where(user_id: current_user.id), :id, :account_number %>
     <%= f.submit class: 'btn btn-primary' %>
   <% end %>
 
