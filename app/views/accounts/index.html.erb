@@ -1,6 +1,7 @@
 <div class="container pt-4 text-center">
   <h1>You have <%= @accounts.count %> <%= @accounts.count == 1 ? "account" : "accounts"  %> with Fin-Man:</h1><br>
   <%= link_to "Add a new account", new_account_path, class: "btn btn-primary" %>
+  
   <div class="d-flex justify-content-around flex-wrap">
     <% @accounts.each do |account| %>
       <%= link_to account_path(account.id) do %>
