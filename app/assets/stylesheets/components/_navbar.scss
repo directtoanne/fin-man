@@ -3,7 +3,7 @@
   color: antiquewhite;
 }
 
-.navbar-lewagon a:hover {
+ul a:hover {
   color: $light-coral;
   transition: 0.3s;
 }
@@ -41,4 +41,12 @@
 .dropdown-menu {
   background-color: $dark;
   border: 2px solid $dark-coral;
+}
+
+.nav li {
+  font-size: 1.5rem;
+}
+
+.nav p {
+  font-size: 1.5rem;
 }

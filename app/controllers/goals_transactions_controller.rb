@@ -16,6 +16,12 @@ class GoalsTransactionsController < ApplicationController
     redirect_to goal_path(@goal)
   end
 
+  def index
+    @goal = Goal.find(params[:goal_id])
+    # authorize @goal
+    @goals_transactions = policy_scope(GoalsTransaction).where(goal: @goal)
+  end
+
   private
   
   def goals_transaction_strong_params

@@ -14,4 +14,4 @@ window.onload = function() {
   } else {
     console.error(countUp.error);
   }
-}
+};

@@ -10,7 +10,7 @@
   border: $dark 4px solid;
   background-color: #68142d;
   border-radius: 5px;
-  width: 350px;
+  width: 300px;
   height: 250px;
   text-decoration: none;
 }
@@ -27,9 +27,9 @@
   border: $dark-coral 2px solid;
   border-radius: 5px;
   width: 100%;
-  height: 100px;
+  height: auto;
   text-decoration: none;
-  color: $dark-coral;
+  color: antiquewhite;
 }
 
 .details-card-title {
@@ -49,18 +49,18 @@
   display: flex;
   justify-content: left;
   font-size: 20px;
-  color: $pine;
   padding: 15px;
   margin: 10px 0px;
-  border: $pine 2px solid;
+  border: $dark 4px solid;
   border-radius: 5px;
   width: 100%;
+  background-color: #68142d;
 }
 
 .transacitons-attr {
   display: flex;
   margin-right: 10px;
-  color: $greeny;
+  color: rgb(240, 207, 218);
 }
 
 a:hover {
