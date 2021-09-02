@@ -27,7 +27,7 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import {goalsTotal} from './numberCounter';
+import { goalsTotal } from './numberCounter';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
