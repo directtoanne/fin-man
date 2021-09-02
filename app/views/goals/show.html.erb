@@ -1,10 +1,3 @@
-<script>
-  console.log("Goal Percentage: <%= @goal.goal_percent_complete %>")
-  console.log("Goal Status: <%= @goal.current_status %>")
-  console.log("Goal Category: <%= @goal.category %>")
-  console.log("Goal Due: <%= @goal.pretty_date(@goal.target_due_date) %>")
-</script>
-
 <div class="container mt-4 text-center">
   <h1><div class="<%= @goal.goal_categories_icon %>"></div> - <%= @goal.name %></h1><br>
   <p class="card-text details-card-title"><%= @goal.subject %></p>

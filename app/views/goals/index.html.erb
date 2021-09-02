@@ -33,7 +33,6 @@
   <div class="cards">
     <% if @goals.count > 0 %>
       <% @goals.each do |goal| %>
-        <script>console.log('<%=goal.goal_complete?%>')</script>
         <div class="goal-card card flex-row shadow p-2">
           <div class="col goal-img-container">
             <div id="avatar-progress" class="avatar-progress" data-icon="<%= goal.goal_categories_icon %>" data-percent="<%= goal.goal_percent_decimal.round(2) %>"></div>
