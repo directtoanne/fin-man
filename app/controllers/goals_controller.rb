@@ -40,7 +40,7 @@ class GoalsController < ApplicationController
   private
 
   def all_user_goals
-    Goal.all.where(user_id: 1)
+    Goal.all.where(user: current_user)
   end
 
   def set_goal

@@ -5,6 +5,6 @@ function hideShowElement(element_args) {
   } else {
     element.style.display = "none";
   }
-}
+};
 
-export { hideShowElement }
+export { hideShowElement };

@@ -1,10 +1,12 @@
-<h1>Welcome to your Dashboard!</h1>
-<div>
-<p>You have <%= pluralize(@accounts.count, 'account') %> in total.</p>
-</div>
-<div>
-  <p>See below your <%= pluralize(@goals.count, 'goal') %>:</p>
-  <% @goals.each do |g| %>
-    <p> - <%= g.name %></p>
-  <% end %>
+<div class="container pt-4 text-center">
+  <h1>Welcome to your Dashboard!</h1>
+  <div>
+    <p>You have <%= pluralize(@accounts.count, 'account') %> in total.</p>
+  </div>
+  <div>
+    <p>See below your <%= pluralize(@goals.count, 'goal') %>:</p>
+    <% @goals.each do |g| %>
+      <p> - <%= g.name %></p>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,9 @@
+<div class="container-sm mt-4">
+  <% @goals_transactions.reverse.each do |transaction| %>
+    <div class="d-flex justify-content-around">
+      <div class="transacitons-attr">Amount: £<%= transaction.amount %></div>
+      <div class="transacitons-attr">Account: <%= Account.find(transaction.account_id).bank_name %> <%= Account.find(transaction.account_id).account_number %></div>
+      <div class="transacitons-attr">Time: <%= transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></div>
+    </div>
+  <% end %>
+</div>

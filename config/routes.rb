@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
 
   resources :goals do
-    resources :goals_transactions, only: [ :create, :delete ]
+    resources :goals_transactions, only: [ :create, :delete, :index ]
   end
 end
