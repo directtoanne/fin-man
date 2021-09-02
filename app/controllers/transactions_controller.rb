@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
     authorize @account
     @transaction.account = @account
     @transaction.save!
-    @account.balance += @transaction.amount
+    @account.balance -= @transaction.amount
     @account.save!
     redirect_to account_path(@account)
   end
