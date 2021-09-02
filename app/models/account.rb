@@ -4,7 +4,7 @@ class Account < ApplicationRecord
   has_many :goals_transactions
 
   validates :user_id, :bank_name, :account_number, :sort_code, :balance, presence: true
-  validates :sort_code, length: { is: 6 }
+  validates :sort_code, length: { is: 6, message: "Sort code must be 6 digits long" }
 
   def sort_code_pretty
     array = sort_code.to_s.scan(/../)
