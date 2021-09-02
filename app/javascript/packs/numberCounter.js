@@ -15,5 +15,3 @@ window.onload = function() {
     console.error(countUp.error);
   }
 };
-
-export { jsCounter };
