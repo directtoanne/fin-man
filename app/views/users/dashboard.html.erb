@@ -5,23 +5,18 @@
 <script>console.log('User ID: <%=current_user.id%>')</script>
 <script>console.log('Total: <%=@accounts_balance%>')</script>
 
-
 <div class="container pt-4 text-center">
   <h1>Welcome to your Dashboard!</h1>
   <div class="dash-accounts d-flex flex-row justify-content-center align-items-center">
   <div class="dash-card accounts-count col">
-    <div id="jsCounter" data-number="<%= @goals_total_count %>" data-prefix="£"></div>
+    <p>Account/s Total</p><br>
+    <%num = currency_pretty(amount:@accounts_balance)%>
+    <div id="jsCounter" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"></div>
   </div>
-  <div class="dash-card accounts-total col"></div>
+  <div class="dash-card accounts-total col">
+    <p>Total Accounts</p>
+    <div><%= @accounts.count %></div>
+  </div>
   <div class="dash-card accounts-scroll col"></div>
-  </div>
-  <div>
-    <p>You have <%= pluralize(@accounts.count, 'account') %> in total.</p>
-  </div>
-  <div>
-    <p>See below your <%= pluralize(@goals.count, 'goal') %>:</p>
-    <% @goals.each do |g| %>
-      <p> - <%= g.name %></p>
-    <% end %>
   </div>
 </div>
