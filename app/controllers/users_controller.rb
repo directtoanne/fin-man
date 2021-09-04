@@ -27,7 +27,7 @@ class UsersController < ApplicationController
           uri = URI(url)
           response = Net::HTTP.get(uri)
           response_obj = JSON.parse(response)
-          total += response_obj['conversion_result']
+          total += response_obj['conversion_result'].round(2)
         end
       end
       return total
