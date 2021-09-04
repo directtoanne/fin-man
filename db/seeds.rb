@@ -11,7 +11,7 @@ Account.destroy_all
 Goal.destroy_all
 User.destroy_all
 
-banks = ["HSBC", "Barclays", "Lloyds", "Natwest", "Santander", "Halifax", "Nationwide", "TSB", "Royal Bank of Scotland", "Ulster", "First Direct", "Monzo", "Starling", "Other"]
+banks = ["HSBC", "Barclays", "Lloyds", "Natwest", "Santander", "Halifax", "Nationwide", "TSB", "Royal Bank of Scotland", "Ulster", "First Direct", "Monzo", "Starling"]
 
 balances = [500, 1000, 2000, 5000, 7000, 12000]
 
