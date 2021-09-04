@@ -21,6 +21,6 @@ puts "John has been created!"
 
 puts "Now we will add a few bank accounts to John's FinMan..."
 4.times do
-  Account.create!(currency: "£", bank_name: banks.sample, account_number: 8.times.map{rand(1..9)}.join.to_i, sort_code: 6.times.map{rand(1..9)}.join.to_i, balance: balances.sample, user_id: john.id)
+  Account.create!(currency: "GBP", bank_name: banks.sample, account_number: 8.times.map{rand(1..9)}.join.to_i, sort_code: 6.times.map{rand(1..9)}.join.to_i, balance: balances.sample, user_id: john.id)
 end
 puts "That's been hopefully done too."
