@@ -7,16 +7,20 @@
 
 <div class="container pt-4 text-center">
   <h1>Welcome to your Dashboard!</h1>
-  <div class="dash-accounts d-flex flex-row justify-content-center align-items-center">
-  <div class="dash-card accounts-count col">
-    <p>Account/s Total</p><br>
-    <%num = currency_pretty(amount:@accounts_balance)%>
-    <div id="jsCounter" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"></div>
-  </div>
-  <div class="dash-card accounts-total col">
-    <p>Total Accounts</p>
-    <div><%= @accounts.count %></div>
-  </div>
-  <div class="dash-card accounts-scroll col"></div>
+  <div class="row flex-row">
+    <div class="col dash-accounts"> <!-- Start Accounts -->
+      <div class="dash-card accounts-count col">
+        <p>Account/s Total</p><br>
+        <%num = currency_pretty(amount:@accounts_balance)%>
+        <div id="jsCounter" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"></div>
+      </div>
+      <div class="dash-card accounts-total col">
+        <p>Total Accounts</p>
+        <div><%= @accounts.count %></div>
+      </div>
+    </div> <!-- End Accounts -->
+    <div class="col dash-goals"> <!-- Start Goals -->
+    
+    </div> <!-- End Goals -->
   </div>
 </div>
