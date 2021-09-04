@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinMan</title>
+    <title>Fin-Man</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag 'fm-icon-trans-bg.png'%>
@@ -30,12 +30,12 @@
                     <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline"> Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="/goals" class="nav-link px-sm-0 px-2">
-                    <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline"> Goals</span></a>
-                </li>
-                <li>
                     <a href="/accounts" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline"> Accounts</span> </a>
+                </li>
+                <li>
+                    <a href="/goals" class="nav-link px-sm-0 px-2">
+                    <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline"> Goals</span></a>
                 </li>
               </ul>
 
@@ -44,8 +44,7 @@
                   <li class="nav-item dropdown">
                     <%= image_tag "https://www.iconninja.com/files/792/280/52/glasses-person-user-male-man-avatar-icon.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <%= link_to "Action", "#", class: "dropdown-item" %>
-                      <%= link_to "Another action", "#", class: "dropdown-item" %>
+                      <%= link_to "My Profile", "#", class: "dropdown-item" %>
                       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                     </div>
                   </li>
