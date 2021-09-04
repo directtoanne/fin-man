@@ -1,5 +1,20 @@
+<%= javascript_pack_tag 'numberCounter', 'data-turbolinks-track': 'reload', defer: true %>
+
+<script>console.log('Accounts Count: <%=@accounts.count%>')</script>
+<script>console.log('Goals Count: <%=@goals.count%>')</script>
+<script>console.log('User ID: <%=current_user.id%>')</script>
+<script>console.log('Total: <%=@accounts_balance%>')</script>
+
+
 <div class="container pt-4 text-center">
   <h1>Welcome to your Dashboard!</h1>
+  <div class="dash-accounts d-flex flex-row justify-content-center align-items-center">
+  <div class="dash-card accounts-count col">
+    <div id="jsCounter" data-number="<%= @goals_total_count %>" data-prefix="£"></div>
+  </div>
+  <div class="dash-card accounts-total col"></div>
+  <div class="dash-card accounts-scroll col"></div>
+  </div>
   <div>
     <p>You have <%= pluralize(@accounts.count, 'account') %> in total.</p>
   </div>
