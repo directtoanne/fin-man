@@ -7,7 +7,7 @@
   <div class="account-details">
     <p class="card-text details-card-title">Account details:</p>
     <div class="details-card-text">
-      <div>Account balance: £<%= @account.balance %></div>
+      <div>Account balance: <%= currency_pretty(amount: @account.balance)[:format] %></div>
       <div>Account currency: <%= @account.currency %></div>
       <div>Account number: <%= @account.account_number %></div>
       <div>Account sort code: <%= @account.sort_code_pretty %></div>
@@ -23,7 +23,7 @@
           <p>These are the last 5 transactions for this account. Your full transaction history for this account can be found <b><%= link_to "here", account_transactions_path(@account) %></b>.</p>
           <% @account.transactions.last(5).reverse.each do |transaction| %>
             <div class="d-flex justify-content-between">
-              <div class="transacitons-attr">Amount: £<%= transaction.amount %></div>
+              <div class="transacitons-attr">Amount: <%= currency_pretty(amount: transaction.amount)[:format] %></div>
               <div class="transacitons-attr">Recipient: <%= transaction.recipient %></div>
               <div class="transacitons-attr">Time: <%= transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></div>
             </div>
