@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_09_02_232101) do
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string "currency"
+    t.string "currency", default: "GBP"
     t.string "bank_name"
     t.integer "account_number"
     t.integer "sort_code"

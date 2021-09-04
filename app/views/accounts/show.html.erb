@@ -8,7 +8,7 @@
     <p class="card-text details-card-title">Account details:</p>
     <div class="details-card-text">
       <div>Account balance: £<%= @account.balance %></div>
-      <div>Account currency: GBP</div>
+      <div>Account currency: <%= @account.currency %></div>
       <div>Account number: <%= @account.account_number %></div>
       <div>Account sort code: <%= @account.sort_code_pretty %></div>
     </div>
