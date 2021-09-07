@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_175235) do
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string "currency", default: "GBP"
+    t.string "currency"
     t.string "bank_name"
     t.integer "account_number"
     t.integer "sort_code"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_175235) do
 
   create_table "goals", force: :cascade do |t|
     t.string "name"
-    t.decimal "target_amount", default: "0.0"
+    t.decimal "target_amount"
     t.date "target_due_date"
     t.decimal "current_amount", default: "0.0"
     t.date "start_date"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_175235) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
     t.string "last_name"
-    t.string "base_currency"
+    t.string "base_currency", default: "GBP"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
