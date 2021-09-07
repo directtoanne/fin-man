@@ -111,6 +111,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.0)
     minitest (5.14.4)
+    money (6.16.0)
+      i18n (>= 0.6.4, <= 2)
     msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.3-x86_64-darwin)
@@ -247,6 +249,7 @@ DEPENDENCIES
   listen (~> 3.2)
   nokogiri
   open-uri
+  money (~> 6.16)
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails

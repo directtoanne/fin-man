@@ -34,6 +34,8 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'open-uri'
 gem 'nokogiri'
+gem 'money', '~> 6.16'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
