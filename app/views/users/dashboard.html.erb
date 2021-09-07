@@ -1,12 +1,26 @@
+<%= javascript_pack_tag 'numberCounter', 'data-turbolinks-track': 'reload', defer: true %>
+
+<script>console.log('Accounts Count: <%=@accounts.count%>')</script>
+<script>console.log('Goals Count: <%=@goals.count%>')</script>
+<script>console.log('User ID: <%=current_user.id%>')</script>
+<script>console.log('Total: <%=@accounts_balance%>')</script>
+
 <div class="container pt-4 text-center">
   <h1>Welcome to your Dashboard!</h1>
-  <div>
-    <p>You have <%= pluralize(@accounts.count, 'account') %> in total.</p>
-  </div>
-  <div>
-    <p>See below your <%= pluralize(@goals.count, 'goal') %>:</p>
-    <% @goals.each do |g| %>
-      <p> - <%= g.name %></p>
-    <% end %>
+  <div class="row flex-row">
+    <div class="col dash-accounts"> <!-- Start Accounts -->
+      <div class="dash-card accounts-count col">
+        <p>Account/s Total</p><br>
+        <%num = currency_pretty(amount:@accounts_balance)%>
+        <div id="jsCounter" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"></div>
+      </div>
+      <div class="dash-card accounts-total col">
+        <p>Total Accounts</p>
+        <div><%= @accounts.count %></div>
+      </div>
+    </div> <!-- End Accounts -->
+    <div class="col dash-goals"> <!-- Start Goals -->
+    
+    </div> <!-- End Goals -->
   </div>
 </div>
