@@ -10,3 +10,17 @@ Transaction.destroy_all
 Account.destroy_all
 Goal.destroy_all
 User.destroy_all
+
+banks = ["HSBC", "Barclays", "Lloyds", "Natwest", "Santander", "Halifax", "Nationwide", "TSB", "Royal Bank of Scotland", "Ulster", "First Direct", "Monzo", "Starling"]
+
+balances = [500, 1000, 2000, 5000, 7000, 12000]
+
+puts "Creating our first user John..."
+john = User.create!(email: "john@gmail.com", password: "tester", first_name: "John", last_name: "Smith")
+puts "John has been created!"
+
+puts "Now we will add a few bank accounts to John's FinMan..."
+4.times do
+  Account.create!(currency: "GBP", bank_name: banks.sample, account_number: 8.times.map{rand(1..9)}.join.to_i, sort_code: 6.times.map{rand(1..9)}.join.to_i, balance: balances.sample, user_id: john.id)
+end
+puts "That's been hopefully done too."
