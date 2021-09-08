@@ -23,14 +23,14 @@ class UsersController < ApplicationController
         if current_user.base_currency == account.currency
           total += account.balance
         else
-          url = "https://v6.exchangerate-api.com/v6/6d334fcfc695911900bdb698/pair/#{current_user.base_currency}/#{account.currency}/#{account.balance}"
+          api_key = ENV["EXCHANGE_RATE_API_KEY"]
+          url = "https://v6.exchangerate-api.com/v6/#{api_key}/pair/#{current_user.base_currency}/#{account.currency}/#{account.balance}"
           uri = URI(url)
           response = Net::HTTP.get(uri)
           response_obj = JSON.parse(response)
           total += response_obj['conversion_result'].round(2)
         end
       end
-      
       return total
     end
   end
