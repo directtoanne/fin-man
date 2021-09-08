@@ -30,6 +30,7 @@ class UsersController < ApplicationController
           total += response_obj['conversion_result'].round(2)
         end
       end
+      
       return total
     end
   end
