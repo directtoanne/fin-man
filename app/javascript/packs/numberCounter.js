@@ -1,11 +1,9 @@
 import { CountUp } from 'countup.js';
 export const goalsTotal = () => {
   const counterMain = document.querySelector('.counter-main')
-  console.log(counterMain);
 
   if (counterMain) {
     const elements = document.querySelectorAll('.jsCounter')
-
     if (elements) {
       elements.forEach(element => {
         const number = element.dataset.number
