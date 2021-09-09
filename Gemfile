@@ -32,6 +32,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
+gem 'open-uri'
+gem 'nokogiri'
 gem 'money', '~> 6.16'
 
 gem 'open-uri'
