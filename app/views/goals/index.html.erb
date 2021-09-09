@@ -22,7 +22,8 @@
   <!-- Goals stats start -->
   <div class="goal-summary-chart row" id="goal-summary-chart">
     <div class="goal-summary-item col-6">Total Goal Savings: 
-      <div id="jsCounter" class="goal-total-counter" data-number="<%= @goals_total_count %>" data-prefix="£"></div>
+    <%num = currency_pretty(amount:@goals_total_count)%>
+      <div id="jsCounter" class="goal-total-counter" data-number="<%= num[:ammount] %>" data-prefix="<%= num[:symbol] %>"></div>
     </div>
     <div class="goal-summary-item col-6">
       <div id="ampieChart" data-pie="<%=@goals_data.to_json%>"></div>
