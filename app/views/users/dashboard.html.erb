@@ -1,26 +1,44 @@
 <%= javascript_pack_tag 'numberCounter', 'data-turbolinks-track': 'reload', defer: true %>
-
-<script>console.log('Accounts Count: <%=@accounts.count%>')</script>
-<script>console.log('Goals Count: <%=@goals.count%>')</script>
-<script>console.log('User ID: <%=current_user.id%>')</script>
-<script>console.log('Total: <%=@accounts_balance%>')</script>
+<script>
+  console.log('Accounts Count: <%=@accounts.count%>')
+  console.log('Goals Count: <%=@goals.count%>')
+  console.log('User ID: <%=current_user.id%>')
+  console.log('Accounts Total: <%=@accounts_balance%>')
+  console.log('Goals Total: <%=@goals_total%>')
+</script>
 
 <div class="container pt-4 text-center">
   <h1>Welcome to your Dashboard!</h1>
   <div class="row flex-row">
-    <div class="col dash-accounts"> <!-- Start Accounts -->
-      <div class="dash-card accounts-count col">
-        <p>Account/s Total</p><br>
-        <%num = currency_pretty(amount:@accounts_balance)%>
-        <div id="jsCounter" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"></div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-accounts"> <!-- Start Accounts -->
+      <div class="dash-accounts-numbers flex d-flex">
+        <div class="col-6 dash-card accounts-count">
+          <p>Account/s Total</p>
+          <br>
+          <%account_num = currency_pretty(amount:@accounts_balance)%>
+          <div id="jsCounter" class="counter_style" data-number="<%= account_num[:amount] %>" data-prefix="<%= account_num[:symbol] %>"></div>
+        </div>
+        <div class="col-6 dash-card accounts-total">
+          <p>Total Accounts</p>
+          <br>
+          <div class="counter_style"><%= @accounts.count %></div>
+        </div>
       </div>
-      <div class="dash-card accounts-total col">
-        <p>Total Accounts</p>
-        <div><%= @accounts.count %></div>
+    </div><!-- End Accounts -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-goals"> <!-- Start Goals -->
+      <div class="dash-goals-numbers flex d-flex">
+        <div class="col-6 dash-card goals-count">
+          <p>Goal/s Total</p>
+          <br>
+          <%goal_num = currency_pretty(amount:@goals_total)%>
+          <div id="jsCounter" class="counter_style" data-number="<%= goal_num[:amount] %>" data-prefix="<%= goal_num[:symbol] %>"></div>
+        </div>
+       <div class="col-6 dash-card accounts-total">
+          <p>Total Goal/s</p>
+          <br>
+          <div class="counter_style"><%= @goals.count %></div>
+        </div>
       </div>
-    </div> <!-- End Accounts -->
-    <div class="col dash-goals"> <!-- Start Goals -->
-    
-    </div> <!-- End Goals -->
+    </div><!-- End Goals -->
   </div>
 </div>
