@@ -15,7 +15,7 @@
   }
 </script>
 
-<div class="container pt-4 text-center">
+<div class="counter-main container pt-4 text-center">
   <h1>Here are your goals</h1><br>
   <button id="goal-summary" onclick="hideShowElement('goal-summary-chart')" class="btn btn-primary"><i class="fas fa-eye"></i> Summary</button>
   <%= link_to "Create a new goal", new_goal_path, class: "btn btn-primary" %>
@@ -23,7 +23,7 @@
   <div class="goal-summary-chart row" id="goal-summary-chart">
     <div class="goal-summary-item col-6">Total Goal Savings: 
     <%num = currency_pretty(amount:@goals_total_count)%>
-      <div id="jsCounter" class="goal-total-counter" data-number="<%= num[:ammount] %>" data-prefix="<%= num[:symbol] %>"></div>
+      <div id="jsCounter" class="jsCounter goal-total-counter" data-number="<%= num[:ammount] %>" data-prefix="<%= num[:symbol] %>"></div>
     </div>
     <div class="goal-summary-item col-6">
       <div id="ampieChart" data-pie="<%=@goals_data.to_json%>"></div>

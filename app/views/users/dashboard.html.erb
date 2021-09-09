@@ -9,14 +9,14 @@
 
 <div class="container pt-4 text-center">
   <h1>Welcome to your Dashboard!</h1>
-  <div class="row flex-row">
+  <div class="counter-main row flex-row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-accounts"> <!-- Start Accounts -->
       <div class="dash-accounts-numbers flex d-flex">
         <div class="col-6 dash-card accounts-count">
           <p>Account/s Total</p>
           <br>
           <%account_num = currency_pretty(amount:@accounts_balance)%>
-          <div id="jsCounter" class="counter_style" data-number="<%= account_num[:amount] %>" data-prefix="<%= account_num[:symbol] %>"></div>
+          <div id="jsCounter" class="jsCounter counter_style" data-number="<%= account_num[:amount] %>" data-prefix="<%= account_num[:symbol] %>"></div>
         </div>
         <div class="col-6 dash-card accounts-total">
           <p>Total Accounts</p>
@@ -31,9 +31,9 @@
           <p>Goal/s Total</p>
           <br>
           <%goal_num = currency_pretty(amount:@goals_total)%>
-          <div id="jsCounter" class="counter_style" data-number="<%= goal_num[:amount] %>" data-prefix="<%= goal_num[:symbol] %>"></div>
+          <div id="jsCounter" class="jsCounter counter_style" data-number="<%= goal_num[:amount] %>" data-prefix="<%= goal_num[:symbol] %>"></div>
         </div>
-       <div class="col-6 dash-card accounts-total">
+        <div class="col-6 dash-card accounts-total">
           <p>Total Goal/s</p>
           <br>
           <div class="counter_style"><%= @goals.count %></div>
