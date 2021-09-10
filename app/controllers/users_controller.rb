@@ -9,7 +9,8 @@ class UsersController < ApplicationController
     authorize @goals
     @accounts_balance = accounts_total
     @goals_total = goals_total
-    #@goals_data = goals_data
+    @goals_data = chart_data(@goals)
+    @accounts_data = chart_data(@accounts)
   end
 
   def goals_total
@@ -18,6 +19,17 @@ class UsersController < ApplicationController
 
   def accounts_total
     convert_account_balances
+  end
+
+  def chart_data(data)
+    res = []
+    if data.model_name == 'Goal'
+      data.each { |goal| res << { name: goal.name, amount: goal.current_amount } }
+    elsif data.model_name == 'Account'
+      data.each { |account| res << { name: account.bank_name, amount: account.balance } }
+    end
+    puts res
+    return res
   end
 
   private
