@@ -1,17 +1,24 @@
 <%= javascript_pack_tag 'numberCounter', 'data-turbolinks-track': 'reload', defer: true %>
+<%= javascript_pack_tag 'barChart', 'data-turbolinks-track': 'reload', defer: true %>
+
 <script>
+
   console.log('Accounts Count: <%=@accounts.count%>')
   console.log('Goals Count: <%=@goals.count%>')
   console.log('User ID: <%=current_user.id%>')
   console.log('Accounts Total: <%=@accounts_balance%>')
   console.log('Goals Total: <%=@goals_total%>')
+  console.log('Goals data: <%=@goals_data%>')
+  console.log('Accounts data: <%=@accounts_data%>')
+
+  
 </script>
 
 <div class="container pt-4 text-center">
   <h1>Welcome to your Dashboard!</h1>
-  <div class="counter-main row flex-row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-accounts"> <!-- Start Accounts -->
-      <div class="dash-accounts-numbers flex d-flex">
+  <div class="counter-main dash-main row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-accounts-main"> <!-- Start Accounts -->
+      <div class="dash-accounts flex d-flex">
         <div class="col-6 dash-card accounts-count">
           <p>Account/s Total</p>
           <br>
@@ -23,10 +30,14 @@
           <br>
           <div class="counter_style"><%= @accounts.count %></div>
         </div>
+        <div class="col-12">
+        Acounts Chart
+        <div id="barChart" class="dash-chart accounts-chart" data-chartData="<%=@accounts_data.to_json%>"></div>
+        </div>
       </div>
     </div><!-- End Accounts -->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-goals"> <!-- Start Goals -->
-      <div class="dash-goals-numbers flex d-flex">
+      <div class="dash-goals">
         <div class="col-6 dash-card goals-count">
           <p>Goal/s Total</p>
           <br>
@@ -37,6 +48,10 @@
           <p>Total Goal/s</p>
           <br>
           <div class="counter_style"><%= @goals.count %></div>
+        </div>
+        <div class="col-12" data-chartData="<%=@goals_data.to_json%>">
+        Goals Chart
+        <div id="barChart" class="dash-chart goals-chart" data-chartData="<%=@goals_data.to_json%>"></div>
         </div>
       </div>
     </div><!-- End Goals -->
