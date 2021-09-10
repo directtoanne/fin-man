@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if data.model_name == 'Goal'
       data.each { |goal| res << { name: goal.name, amount: goal.current_amount } }
     elsif data.model_name == 'Account'
-      data.each { |account| res << { name: account.bank_name, amount: account.balance } }
+      data.each { |account| res << { name: account.bank_name, amount: account.balance.to_d } }
     end
     puts res
     return res
