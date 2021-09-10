@@ -1,8 +1,8 @@
 <%= javascript_pack_tag 'numberCounter', 'data-turbolinks-track': 'reload', defer: true %>
 <%= javascript_pack_tag 'barChart', 'data-turbolinks-track': 'reload', defer: true %>
 
+<% if Rails.env.development?%>
 <script>
-
   console.log('Accounts Count: <%=@accounts.count%>')
   console.log('Goals Count: <%=@goals.count%>')
   console.log('User ID: <%=current_user.id%>')
@@ -10,50 +10,55 @@
   console.log('Goals Total: <%=@goals_total%>')
   console.log('Goals data: <%=@goals_data%>')
   console.log('Accounts data: <%=@accounts_data%>')
-
-  
 </script>
-
+<% end %>
 <div class="container pt-4 text-center">
-  <h1>Welcome to your Dashboard!</h1>
+  <h1 class="dash-welcome-header">Welcome to your Dashboard!</h1>
   <div class="counter-main dash-main row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-accounts-main"> <!-- Start Accounts -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-accounts"> <!-- Start Accounts -->
       <div class="dash-accounts flex d-flex">
-        <div class="col-6 dash-card accounts-count">
-          <p>Account/s Total</p>
+        <div class="col-6 dash-card accounts-count p-0">
+          <h3>Account/s Total</h3>
           <br>
           <%account_num = currency_pretty(amount:@accounts_balance)%>
           <div id="jsCounter" class="jsCounter counter_style" data-number="<%= account_num[:amount] %>" data-prefix="<%= account_num[:symbol] %>"></div>
         </div>
-        <div class="col-6 dash-card accounts-total">
-          <p>Total Accounts</p>
+        <div class="col-6 dash-card accounts-total p-0">
+          <h3>Total Accounts</h3>
           <br>
           <div class="counter_style"><%= @accounts.count %></div>
         </div>
-        <div class="col-12">
-        Acounts Chart
-        <div id="barChart" class="dash-chart accounts-chart" data-chartData="<%=@accounts_data.to_json%>"></div>
+        <div class="col-12 p-0">
+        <% if !@accounts_data.empty?%>
+          <h3>Accounts Chart</h3>
+          <div id="barChart" class="dash-chart accounts-chart" data-chartData="<%=@accounts_data.to_json%>"></div>
+        <% end %>          
         </div>
+
       </div>
-    </div><!-- End Accounts -->
+    </div>
+    <!-- End Accounts -->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-goals"> <!-- Start Goals -->
       <div class="dash-goals">
         <div class="col-6 dash-card goals-count">
-          <p>Goal/s Total</p>
+          <h3>Goal/s Total</h3>
           <br>
           <%goal_num = currency_pretty(amount:@goals_total)%>
           <div id="jsCounter" class="jsCounter counter_style" data-number="<%= goal_num[:amount] %>" data-prefix="<%= goal_num[:symbol] %>"></div>
         </div>
         <div class="col-6 dash-card accounts-total">
-          <p>Total Goal/s</p>
+          <h3>Total Goal/s</h3>
           <br>
           <div class="counter_style"><%= @goals.count %></div>
         </div>
-        <div class="col-12" data-chartData="<%=@goals_data.to_json%>">
-        Goals Chart
-        <div id="barChart" class="dash-chart goals-chart" data-chartData="<%=@goals_data.to_json%>"></div>
-        </div>
+        <% if !@goals_data.empty?%>
+          <div class="col-12"">
+            <h3>Goals Chart</h3>
+            <div id="barChart" class="dash-chart goals-chart" data-chartData="<%=@goals_data.to_json%>"></div>
+          </div>
+        <% end %>
       </div>
-    </div><!-- End Goals -->
+    </div>
+    <!-- End Goals -->
   </div>
 </div>

@@ -1,6 +1,10 @@
+.dash-welcome-header {
+  margin-bottom: 24px;
+}
+
 .dash-main {
   width: 100%;
-  margin: 0;
+  text-align: center;
   display: flex;
   flex-wrap: wrap;
 }
@@ -8,7 +12,10 @@
 .dash-accounts, .dash-goals {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .accounts-chart, .goals-chart {
