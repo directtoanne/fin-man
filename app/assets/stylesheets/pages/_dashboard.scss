@@ -1,0 +1,17 @@
+.dash-main {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dash-accounts, .dash-goals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.accounts-chart, .goals-chart {
+  height: 300px;
+  width: 100%;
+}
