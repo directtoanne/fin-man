@@ -11,9 +11,12 @@ class ArticlesController < ApplicationController
       @articles << title
       # article = Article.create(title: title)
       # @articles.push(article)
+
     end
      articles = policy_scope(Article)
 
      authorize articles
+
  end
 end
+
