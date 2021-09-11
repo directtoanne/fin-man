@@ -52,7 +52,7 @@ class UsersController < ApplicationController
           accounts_total += account.balance
         else
           api_key = ENV["EXCHANGE_RATE_API_KEY"]
-          url = "https://v6.exchangerate-api.com/v6/#{api_key}/pair/#{current_user.base_currency}/#{account.currency}/#{account.balance}"
+          url = "https://v6.exchangerate-api.com/v6/#{api_key}/pair/#{account.currency}/#{current_user.base_currency}/#{account.balance}"
           uri = URI(url)
           response = Net::HTTP.get(uri)
           response_obj = JSON.parse(response)
