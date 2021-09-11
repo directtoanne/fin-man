@@ -1,8 +1,17 @@
 <div class="container-sm mt-4">
   <% @transactions.reverse.each do |transaction| %>
     <div class="d-flex justify-content-around">
-      <div class="transactions-attr">Amount: £<%= transaction.amount %></div>
-      <div class="transactions-attr">Recipient: <%= transaction.recipient %></div>
+      <div class="transactions-attr">
+        <% if transaction.amount.negative? %>
+          Withdrew: 
+          <% temp = "to " %>
+        <% else %>
+          Deposited:
+          <% temp = "from " %>
+        <% end %>
+        <%= currency_pretty(amount: transaction.amount, currency: @account.currency)[:format] %>
+      </div>
+      <div class="transactions-attr"><%= temp %><%= transaction.recipient %></div>
       <div class="transactions-attr">Time: <%= transaction.time.strftime("%I:%M%p on %d/%m/%Y") %></div>
     </div>
   <% end %>
