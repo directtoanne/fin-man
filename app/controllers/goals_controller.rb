@@ -48,8 +48,12 @@ class GoalsController < ApplicationController
   end
 
   def set_goal
-    @goal = Goal.find(params[:id])
-    authorize_goal
+    @goal = Goal.find_by_id(params[:id])
+    if @goal.blank?
+      redirect_to goals_path, alert: 'The selected Goal is not found, please select a different Goal'
+    else
+      authorize_goal
+    end
   end
 
   def authorize_goal

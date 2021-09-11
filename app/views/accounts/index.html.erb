@@ -1,5 +1,5 @@
 <div class="container pt-4 text-center">
-  <h1>You have <%= @accounts.count %> <%= @accounts.count == 1 ? "account" : "accounts"  %> with Fin-Man:</h1><br>
+  <h1>You have <%= @accounts.count %> Account<%=pluralize_string(data: @accounts, letter: 's')%> with Fin-Man:</h1><br>
   <%= link_to "Add a new account", new_account_path, class: "btn btn-primary" %>
   
   <div class="d-flex justify-content-around flex-wrap">

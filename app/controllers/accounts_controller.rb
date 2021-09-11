@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
   def new
     @account = Account.new
   end
-  
+
   def create
     @account = Account.new(account_strong_params)
     @account.user_id = current_user.id
@@ -29,14 +29,18 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = Account.find(params[:id])
-    authorize_acc
+    @account = Account.find_by_id params[:id]
+    if @account.blank?
+      redirect_to accounts_path, alert: 'The selected Account is not found, please select a different account'
+    else
+      authorize_acc
+    end
   end
 
   def authorize_acc
     authorize @account
   end
-  
+
   def account_strong_params
     params.require(:account).permit(
       :user_id, :currency, :bank_name, :account_number, :sort_code, :balance
