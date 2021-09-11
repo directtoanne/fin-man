@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   belongs_to :user
   has_many :transactions, dependent: :destroy
-  has_many :goals_transactions
+  has_many :goals_transactions, dependent: :destroy
 
   validates :user_id, :bank_name, :account_number, :sort_code, :balance, presence: true
   validates :sort_code, length: { is: 6, message: "must be 6 digits long" }
