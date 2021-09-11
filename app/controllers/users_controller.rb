@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     elsif data.model_name == 'Account'
       data.each do |account|
         converted = convert_currency(input: account.currency, amount: validate_data(account.balance))
-        res << { name: account.bank_name, amount: converted[0][:conversion_result].round(2)}
+        res << { name: account.bank_name, amount: converted[0][:conversion_result].round(2) }
       end
     end
     return res
