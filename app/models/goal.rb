@@ -2,10 +2,6 @@ class Goal < ApplicationRecord
   belongs_to :user
   has_many :goals_transactions, dependent: :destroy
 
-  def goal_complete?
-    completed?
-  end
-
   def mark_goal_complete
     complete_goal
   end

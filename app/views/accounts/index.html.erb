@@ -10,7 +10,7 @@
             <%= image_tag "icons/#{account.account_categories_icon}", class: "bank-icon mr-2" %>
             <h5 class="card-title">- <%= account.bank_name %></h5>
           </div>
-          <p class="card-text">Balance: <%= currency_pretty(amount: account.balance)[:format] %></p>
+          <p class="card-text">Balance: <%= currency_pretty(amount: account.balance, currency: account.currency)[:format] %></p>
           <p class="card-text">Account number: <%= account.account_number %></p>
           <p class="card-text">Sort code: <%= account.sort_code_pretty %></p>
         </div>
