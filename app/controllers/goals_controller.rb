@@ -18,6 +18,10 @@ class GoalsController < ApplicationController
     @goal = Goal.new
   end
 
+  def goals_data
+    user_goals_data
+  end
+
   def create
     @goal = Goal.new(goal_strong_params)
     @goal.user_id = current_user.id
@@ -84,7 +88,7 @@ class GoalsController < ApplicationController
     return total
   end
 
-  def goals_data
+  def user_goals_data
     data = []
     goals = all_user_goals
     goals.each do |goal|
