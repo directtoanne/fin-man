@@ -6,4 +6,8 @@ module ApplicationHelper
     money = Money.from_cents(amount, currency)
     return {format: money.format, amount: money, symbol: money.symbol}
   end
+
+  def pluralize_string(data:, letter:)
+    return letter.to_s if data.count > 1
+  end
 end
