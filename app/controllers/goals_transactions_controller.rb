@@ -4,9 +4,19 @@ class GoalsTransactionsController < ApplicationController
     @goals_transaction = GoalsTransaction.new(goals_transaction_strong_params)
     authorize @goal
     @goals_transaction.goal = @goal
+    @goals_transaction.time = Time.now
     @goals_transaction.save!
     @goal.current_amount += @goals_transaction.amount
     @goal.save!
+
+    #below is automatic saving transaction added, perhaps format with diff color on show page
+    @transaction = Transaction.new(account_id: @goals_transaction.account_id, recipient: "Saving for #{@goal.name}", amount: -@goals_transaction.amount, time: @goals_transaction.time)
+    @account = Account.find(@goals_transaction.account_id)
+    authorize @account
+    @transaction.account = @account
+    @transaction.save!
+    @account.balance -= @goals_transaction.amount
+    @account.save!
     redirect_to goal_path(@goal)
   end
 

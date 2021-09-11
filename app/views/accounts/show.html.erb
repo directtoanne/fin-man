@@ -23,9 +23,9 @@
           <p>These are the last 5 transactions for this account. Your full transaction history for this account can be found <b><%= link_to "here", account_transactions_path(@account) %></b>.</p>
           <% @account.transactions.last(5).reverse.each do |transaction| %>
             <div class="d-flex justify-content-between">
-              <div class="transacitons-attr">Amount: <%= currency_pretty(amount: transaction.amount, currency: @account.currency)[:format] %></div>
-              <div class="transacitons-attr">Recipient: <%= transaction.recipient %></div>
-              <div class="transacitons-attr">Time: <%= transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></div>
+              <div class="transactions-attr">Amount: <%= currency_pretty(amount: transaction.amount, currency: @account.currency)[:format] %></div>
+              <div class="transactions-attr">Recipient: <%= transaction.recipient %></div>
+              <div class="transactions-attr">Time: <%= transaction.time.strftime("%I:%M%p on %d/%m/%Y") %></div>
             </div>
           <% end %>
         </div>
@@ -33,7 +33,12 @@
     </div>
 
     <div class="m-3">
-      <h5 class="card-title">Add a transaction</h5>
+      <h5 class="card-title">Upload your transaction history</h5>
+      <%= simple_form_for([@account, @transaction]) do |f| %>
+        <%= f.input :file, as: :file, input_html: {} %>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+      <h5 class="card-title">or Manually add a transaction</h5>
       <%= simple_form_for([@account, @transaction], remote: true) do |f| %>
         <%= f.input :recipient %>
         <%= f.input :amount %>

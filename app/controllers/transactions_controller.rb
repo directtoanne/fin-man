@@ -1,12 +1,27 @@
 class TransactionsController < ApplicationController
   def create
     @account = Account.find(params[:account_id])
-    @transaction = Transaction.new(transaction_strong_params)
-    authorize @account
-    @transaction.account = @account
-    @transaction.save!
-    @account.balance += @transaction.amount
-    @account.save!
+    if params[:transaction][:file].present?
+      require 'csv' 
+      file = params[:transaction][:file] 
+      CSV.foreach(file.path, headers: true, converters: :date) do |row| 
+        @transaction = Transaction.new(recipient: row["recipient"], amount: row["amount"], time: row["time"])
+        @account = Account.find(params[:account_id])
+        authorize @account
+        @transaction.account = @account
+        @transaction.save!
+        @account.balance += @transaction.amount
+        @account.save!
+      end  
+    else
+      @transaction = Transaction.new(transaction_strong_params)
+      authorize @account
+      @transaction.account = @account
+      @transaction.time = Time.now
+      @transaction.save!
+      @account.balance += @transaction.amount
+      @account.save!
+    end
     redirect_to account_path(@account)
   end
 
@@ -26,7 +41,7 @@ class TransactionsController < ApplicationController
   
   def transaction_strong_params
     params.require(:transaction).permit(
-      :account_id, :recipient, :time, :amount
+      :account_id, :recipient, :time, :amount, :file
     )
   end
 end

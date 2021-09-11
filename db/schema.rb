@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_175235) do
+ActiveRecord::Schema.define(version: 2021_09_11_150234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_175235) do
 
   create_table "goals", force: :cascade do |t|
     t.string "name"
-    t.decimal "target_amount", default: "0.0"
+    t.decimal "target_amount"
     t.date "target_due_date"
     t.decimal "current_amount", default: "0.0"
     t.date "start_date"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_175235) do
     t.datetime "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "file"
     t.index ["account_id"], name: "index_transactions_on_account_id"
   end
 
