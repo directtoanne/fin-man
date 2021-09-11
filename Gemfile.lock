@@ -244,8 +244,6 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 2.7)
   listen (~> 3.2)
-  nokogiri
-  open-uri
   money (~> 6.16)
   nokogiri
   open-uri
