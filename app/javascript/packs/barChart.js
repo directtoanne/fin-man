@@ -43,8 +43,8 @@ am4core.ready(function () {
 
       series.tooltip.pointerOrientation = "vertical";
 
-      series.columns.template.column.cornerRadiusTopLeft = 10;
-      series.columns.template.column.cornerRadiusTopRight = 10;
+      series.columns.template.column.cornerRadiusTopLeft = 30;
+      series.columns.template.column.cornerRadiusTopRight = 30;
       series.columns.template.column.fillOpacity = 0.8;
 
       // on hover, make corner radiuses bigger
