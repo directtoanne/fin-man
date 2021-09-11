@@ -25,7 +25,7 @@
             <div class="d-flex justify-content-between">
               <div class="transactions-attr">Amount: £<%= transaction.amount %></div>
               <div class="transactions-attr">Account: <%= Account.find(transaction.account_id).bank_name %> <%= Account.find(transaction.account_id).account_number %></div>
-              <div class="transactions-attr">Time: <%= transaction.created_at.strftime("%I:%M%p on %d/%m/%Y") %></div>
+              <div class="transactions-attr">Time: <%= transaction.time.strftime("%I:%M%p on %d/%m/%Y") %></div>
             </div>
           <% end %>
         </div>

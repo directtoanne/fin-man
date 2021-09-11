@@ -1,11 +1,12 @@
 class TransactionsController < ApplicationController
   def create
     @account = Account.find(params[:account_id])
-    if params[:file].present?
+    if params[:transaction][:file].present?
       require 'csv' 
-      file = params[:file] 
+      file = params[:transaction][:file] 
       CSV.foreach(file.path, headers: true, converters: :date) do |row| 
         @transaction = Transaction.new(recipient: row["recipient"], amount: row["amount"], time: row["time"])
+        @account = Account.find(params[:account_id])
         authorize @account
         @transaction.account = @account
         @transaction.save!
@@ -16,6 +17,7 @@ class TransactionsController < ApplicationController
       @transaction = Transaction.new(transaction_strong_params)
       authorize @account
       @transaction.account = @account
+      @transaction.time = Time.now
       @transaction.save!
       @account.balance += @transaction.amount
       @account.save!
