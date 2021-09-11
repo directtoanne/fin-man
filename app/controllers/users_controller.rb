@@ -24,9 +24,9 @@ class UsersController < ApplicationController
   def chart_data(data)
     res = []
     if data.model_name == 'Goal'
-      data.each { |goal| res << { name: goal.name, amount: goal.current_amount } }
+      data.each { |goal| res << { name: goal.name, amount: validate_data(goal.current_amount) } }
     elsif data.model_name == 'Account'
-      data.each { |account| res << { name: account.bank_name, amount: account.balance.to_d } }
+      data.each { |account| res << { name: account.bank_name, amount: validate_data(account.balance).to_d } }
     end
     puts res
     return res
@@ -49,17 +49,26 @@ class UsersController < ApplicationController
     if @accounts != nil? || @accounts.count.positive?
       @accounts.each do |account|
         if current_user.base_currency == account.currency
-          accounts_total += account.balance
+          accounts_total += validate_data(account.balance)
         else
-          api_key = ENV["EXCHANGE_RATE_API_KEY"]
-          url = "https://v6.exchangerate-api.com/v6/#{api_key}/pair/#{account.currency}/#{current_user.base_currency}/#{account.balance}"
-          uri = URI(url)
-          response = Net::HTTP.get(uri)
-          response_obj = JSON.parse(response)
-          accounts_total += response_obj['conversion_result'].round(2)
+          url = "/pair/#{account.currency}/#{current_user.base_currency}/#{validate_data(account.balance)}"
+          resp = get_rate(url)
+          accounts_total += resp['conversion_result'].round(2)
         end
       end
       return accounts_total
     end
+  end
+
+  def validate_data(data)
+    data.negative? ? 0 : data
+  end
+
+  def get_rate(url_part)
+    api_key = ENV["EXCHANGE_RATE_API_KEY"]
+    url = "https://v6.exchangerate-api.com/v6/#{api_key}" + url_part
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    JSON.parse(response)
   end
 end
