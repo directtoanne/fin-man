@@ -3,9 +3,9 @@
   <%= simple_form_for(@account) do |a| %>
     <%= a.input :bank_name, collection: @account.account_categories %>
     <%= a.input :currency, collection: currency%>
-    <%= a.input :account_number %>
-    <%= a.input :sort_code %>
-    <%= a.input :balance %>
+    <%= a.input :account_number, placeholder: 'E.g 12345678' %>
+    <%= a.input :sort_code, placeholder: ' E.g 123456' %>
+    <%= a.input :balance, placeholder: 'E.g 10000.00' %>
     <%= a.submit class: 'btn btn-primary' %>
   <% end %>
 </div>
