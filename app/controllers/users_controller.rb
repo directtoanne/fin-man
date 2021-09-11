@@ -1,7 +1,5 @@
-require 'json'
-require 'open-uri'
-
 class UsersController < ApplicationController
+  include ApplicationHelper
   def dashboard
     @accounts = current_user.accounts
     @goals = current_user.goals
@@ -26,9 +24,11 @@ class UsersController < ApplicationController
     if data.model_name == 'Goal'
       data.each { |goal| res << { name: goal.name, amount: validate_data(goal.current_amount) } }
     elsif data.model_name == 'Account'
-      data.each { |account| res << { name: account.bank_name, amount: validate_data(account.balance).to_d } }
+      data.each do |account|
+        converted = convert_currency(input: account.currency, amount: validate_data(account.balance))
+        res << { name: account.bank_name, amount: converted[0][:conversion_result].round(2)}
+      end
     end
-    puts res
     return res
   end
 
@@ -51,24 +51,12 @@ class UsersController < ApplicationController
         if current_user.base_currency == account.currency
           accounts_total += validate_data(account.balance)
         else
-          url = "/pair/#{account.currency}/#{current_user.base_currency}/#{validate_data(account.balance)}"
-          resp = get_rate(url)
-          accounts_total += resp['conversion_result'].round(2)
+          result = convert_currency(input: account.currency, amount: account.balance)
+          result = result[0]
+          accounts_total += result[:conversion_result].round(2)
         end
       end
       return accounts_total
     end
-  end
-
-  def validate_data(data)
-    data.negative? ? 0 : data
-  end
-
-  def get_rate(url_part)
-    api_key = ENV["EXCHANGE_RATE_API_KEY"]
-    url = "https://v6.exchangerate-api.com/v6/#{api_key}" + url_part
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    JSON.parse(response)
   end
 end
