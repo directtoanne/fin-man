@@ -21,7 +21,7 @@
         <% unless action_name == "home" %>
           <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
             <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start">
-              <%= link_to "#", class: "d-flex align-items-center mt-2 pb-sm-3 mb-md-0 me-md-auto text-decoration-none navbar-brand" do %>
+              <%= link_to root_path, class: "d-flex align-items-center mt-2 pb-sm-3 mb-md-0 me-md-auto text-decoration-none navbar-brand" do %>
                 <%= image_tag 'fm-logo-white.png' %>
               <% end %>
               <% if user_signed_in? %>
