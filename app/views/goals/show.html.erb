@@ -20,8 +20,8 @@
         <p>You haven't put aside any money towards this goal. You can add your savings here:</p>
       <% else %>
         <div>
-          <p>These are the last 5 savings you've put aside for this goal. A full list of your deposit history can be found <b><%= link_to "here", goal_goals_transactions_path(@goal) %></b>.</p>
-          <% @goal.goals_transactions.last(5).reverse.each do |transaction| %>
+          <p>These are the last 10 savings you've put aside for this goal. A full list of your deposit history can be found <b><%= link_to "here", goal_goals_transactions_path(@goal) %></b>.</p>
+          <% @goal.goals_transactions.last(10).reverse.each do |transaction| %>
             <div class="d-flex justify-content-between">
               <div class="transactions-attr">Amount: £<%= transaction.amount %></div>
               <div class="transactions-attr">Account: <%= Account.find(transaction.account_id).bank_name %> <%= Account.find(transaction.account_id).account_number %></div>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="m-3">
-      <h5 class="card-title">Add Savings to this Goal</h5>
+      <h5 class="form-title">Add Savings to this Goal</h5>
       <%= simple_form_for([@goal, @goals_transaction], remote: true) do |f| %>
         <%= f.input :amount %>
         <%= f.collection_select :account_id, Account.order(:account_number).where(user_id: current_user.id), :id, :account_number %>

@@ -10,7 +10,7 @@ class GoalsTransactionsController < ApplicationController
     @goal.save!
 
     #below is automatic saving transaction added, perhaps format with diff color on show page
-    @transaction = Transaction.new(account_id: @goals_transaction.account_id, recipient: "Saving for #{@goal.name}", amount: -@goals_transaction.amount, time: @goals_transaction.time)
+    @transaction = Transaction.new(account_id: @goals_transaction.account_id, recipient: "#{@goal.name} Goal", amount: -@goals_transaction.amount, time: @goals_transaction.time)
     @account = Account.find(@goals_transaction.account_id)
     authorize @account
     @transaction.account = @account
