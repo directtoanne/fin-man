@@ -20,11 +20,20 @@
         <p>There are currently no transactions for this account. You can add a transaction here:</p>
       <% else %>
         <div>
-          <p>These are the last 5 transactions for this account. Your full transaction history for this account can be found <b><%= link_to "here", account_transactions_path(@account) %></b>.</p>
-          <% @account.transactions.last(5).reverse.each do |transaction| %>
+          <p>These are the last 10 transactions for this account. Your full transaction history for this account can be found <b><%= link_to "here", account_transactions_path(@account) %></b>.</p>
+          <% @account.transactions.last(10).reverse.each do |transaction| %>
             <div class="d-flex justify-content-between">
-              <div class="transactions-attr">Amount: <%= currency_pretty(amount: transaction.amount, currency: @account.currency)[:format] %></div>
-              <div class="transactions-attr">Recipient: <%= transaction.recipient %></div>
+              <div class="transactions-attr">
+                <% if transaction.amount.negative? %>
+                  Withdrew: 
+                  <% temp = "to " %>
+                <% else %>
+                  Deposited:
+                  <% temp = "from " %>
+                <% end %>
+                <%= currency_pretty(amount: transaction.amount, currency: @account.currency)[:format] %>
+              </div>
+              <div class="transactions-attr"><%= temp %><%= transaction.recipient %></div>
               <div class="transactions-attr">Time: <%= transaction.time.strftime("%I:%M%p on %d/%m/%Y") %></div>
             </div>
           <% end %>
@@ -33,12 +42,12 @@
     </div>
 
     <div class="m-3">
-      <h5 class="card-title">Upload your transaction history</h5>
+      <h1 class="text-center mb-2" style="font-size: 34px">Upload your Transaction History</h1>
       <%= simple_form_for([@account, @transaction]) do |f| %>
         <%= f.input :file, as: :file, input_html: {} %>
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
-      <h5 class="card-title">or Manually add a transaction</h5>
+      <h1 class="text-center mb-2" style="font-size: 34px">or Manually add a Transaction</h1>
       <%= simple_form_for([@account, @transaction], remote: true) do |f| %>
         <%= f.input :recipient %>
         <%= f.input :amount %>
