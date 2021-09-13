@@ -26,19 +26,29 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_strong_params)
     @goal.user_id = current_user.id
     authorize_goal
-    @goal.save ? (redirect_to goal_path(@goal)) : (render :new)
+    if @goal.save
+      redirect_to goal_path(@goal), notice: 'Goal Sucessfully created, Lets get saving!!'
+    else
+      redirect_to new_goal_path, alert: 'Please try creating your goal again'
+    end
   end
 
   def edit; end
 
   def update
-    @goal.update(goal_strong_params)
-    redirect_to goals_path
+    if @goal.update(goal_strong_params)
+      redirect_to goals_path, notice: 'Goal Sucessfully Updated'
+    else
+      redirect_to goals_path, alert: 'Something went wrong please try updating your goal again.'
+    end
   end
 
   def destroy
-    @goal.destroy
-    redirect_to goals_path
+    if @goal.destroy
+      redirect_to goals_path, notice: 'Goal Sucessfully Deleted'
+    else
+      redirect_to goals_path, alert: 'There seemed to be an error deleting your Goal, please try again'
+    end
   end
 
   private
