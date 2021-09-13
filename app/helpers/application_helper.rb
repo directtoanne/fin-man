@@ -21,14 +21,25 @@ module ApplicationHelper
   def convert_currency(input:, amount:, output: current_user.base_currency)
     result = []
     url = "/pair/#{input}/#{output}/#{validate_data(amount)}"
-    resp = get_rate(url)
-    result << {
-      result: resp['result'],
-      conversion_result: resp['conversion_result'],
-      conversion_rate: resp['conversion_rate'],
-      base_code: resp['base_code'],
-      target_code: resp['target_code']
-    }
+    if input == output
+      result << {
+        result: 'success',
+        conversion_result: amount,
+        conversion_rate: 1,
+        base_code: input,
+        target_code: output
+      }
+    else
+      resp = get_rate(url)
+      result << {
+        result: resp['result'],
+        conversion_result: resp['conversion_result'],
+        conversion_rate: resp['conversion_rate'],
+        base_code: resp['base_code'],
+        target_code: resp['target_code']
+      }
+    end
+    return result
   end
 
   private
