@@ -18,12 +18,19 @@ class AccountsController < ApplicationController
     @account = Account.new(account_strong_params)
     @account.user_id = current_user.id
     authorize_acc
-    @account.save ? (redirect_to account_path(@account)) : (render :new)
+    if @account.save
+      redirect_to account_path(@account), notice: 'Account Sucessfully created, Lets get saving!!'
+    else
+      redirect_to new_account_path, alert: 'Please try adding your account again'
+    end
   end
 
   def destroy
-    @account.destroy
-    redirect_to accounts_path
+    if @account.destroy
+      redirect_to accounts_path, notice: 'Account Sucessfully destroyed'
+    else
+      redirect_to accounts_path, alert: 'Please try deleting your account again'
+    end
   end
 
   private
