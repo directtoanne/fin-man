@@ -23,8 +23,9 @@
           <p>These are the last 10 transactions for this account. Your full transaction history for this account can be found <b><%= link_to "here", account_transactions_path(@account) %></b>.</p>
           <% @account.transactions.last(10).reverse.each do |transaction| %>
             <div class="d-flex justify-content-between">
+            <% if !transaction.amount.nil? %>
               <div class="transactions-attr">
-                <% if transaction.amount.negative? %>
+                <% if !transaction.amount.nil? && transaction.amount.negative? %>
                   Withdrew: 
                   <% temp = "to " %>
                 <% else %>
@@ -35,6 +36,7 @@
               </div>
               <div class="transactions-attr"><%= temp %><%= transaction.recipient %></div>
               <div class="transactions-attr">Time: <%= transaction.time.strftime("%I:%M%p on %d/%m/%Y") %></div>
+            <% end %>
             </div>
           <% end %>
         </div>
