@@ -25,9 +25,11 @@
     <%num = currency_pretty(amount:@goals_total_count)%>
     <div id="jsCounter" class="jsCounter counter_style" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"><%= num[:format] %></div>
     </div>
+    <% if @goals_total_count.positive? %>
     <div class="goal-summary-item col-6">
       <div id="ampieChart" data-pie="<%=@goals_data.to_json%>"></div>
     </div>
+    <% end %>
   </div>
   <!-- Goals stats END-->
   <!-- Hide / Show chart on button press -->
