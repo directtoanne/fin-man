@@ -19,7 +19,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-accounts"> <!-- Start Accounts -->
       <div class="dash-accounts flex d-flex">
         <div class="col-6 dash-card accounts-count p-0">
-          <h3>Account<%=pluralize_string(data: @accounts, letter: 's')%> Total</h3>
+          <h3><%= pluralize(@accounts.count, "Account") %> Total</h3>
           <br>
           <%account_num = currency_pretty(amount:@accounts_balance)%>
           <div id="jsCounter" class="jsCounter counter_style" data-number="<%= account_num[:amount] %>" data-prefix="<%= account_num[:symbol] %>"></div>
@@ -31,7 +31,7 @@
         </div>
         <div class="col-12 p-0">
         <% if !@accounts_data.empty?%>
-          <h3>Account<%=pluralize_string(data: @accounts, letter: 's')%> Chart</h3>
+          <h3><%= pluralize(@accounts.count, "Account") %> Chart</h3>
           <div id="barChart" class="dash-chart accounts-chart" data-chartData="<%=@accounts_data.to_json%>"></div>
         <% end %>          
         </div>
@@ -42,7 +42,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 dash-goals"> <!-- Start Goals -->
       <div class="dash-goals">
         <div class="col-6 dash-card goals-count">
-          <h3>Goal<%=pluralize_string(data: @goals, letter: 's')%> Total</h3>
+          <h3><%= pluralize(@goals.count, "Goal") %> Total</h3>
           <br>
           <%goal_num = currency_pretty(amount:@goals_total)%>
           <div id="jsCounter" class="jsCounter counter_style" data-number="<%= goal_num[:amount] %>" data-prefix="<%= goal_num[:symbol] %>"></div>
@@ -54,7 +54,7 @@
         </div>
         <% if !@goals_data.empty?%>
           <div class="col-12"">
-            <h3>Goal<%=pluralize_string(data: @goals, letter: 's')%> Chart</h3>
+            <h3><%= pluralize(@goals.count, "Goal") %> Chart</h3>
             <div id="barChart" class="dash-chart goals-chart" data-chartData="<%=@goals_data.to_json%>"></div>
           </div>
         <% end %>

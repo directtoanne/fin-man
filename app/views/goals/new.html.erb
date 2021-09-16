@@ -1,11 +1,13 @@
-<div class="form-container text-center mt-4">
-  <h3><%= current_user.first_name %>, fill in this form to add a goal:</h3>
-  <%= simple_form_for(@goal) do |goal| %>
-    <%= goal.input :name, placeholder: 'E.g New Car' %>
-    <%= goal.input :subject, placeholder: 'E.g New Electric car for the family' %>
-    <%= goal.input :category, collection: @goal.goal_categories %>
-    <%= goal.input :target_amount, placeholder: 'E.g 50000.00' %>
-    <%= goal.input :target_due_date, as: :date, html5: true %>
-    <%= goal.submit class: 'btn btn-primary' %>
-  <% end %>
+<div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100vh;">
+  <div class="form-container text-center">
+    <h3><%= current_user.first_name %>, fill in this form to add a goal:</h3>
+    <%= simple_form_for(@goal) do |goal| %>
+      <%= goal.input :name, placeholder: 'E.g New Car' %>
+      <%= goal.input :subject, placeholder: 'E.g New Electric car for the family' %>
+      <%= goal.input :category, collection: @goal.goal_categories %>
+      <%= goal.input :target_amount, placeholder: 'E.g 50000.00' %>
+      <%= goal.input :target_due_date, as: :date, html5: true %>
+      <%= goal.submit class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 </div>

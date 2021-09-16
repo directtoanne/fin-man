@@ -1,11 +1,13 @@
-<div class="form-container text-center mt-4">
-  <h3><%= current_user.first_name %>, fill in this form to add an account:</h3>
-  <%= simple_form_for(@account) do |a| %>
-    <%= a.input :bank_name, collection: @account.account_categories %>
-    <%= a.input :currency, collection: currency%>
-    <%= a.input :account_number, placeholder: 'E.g 12345678' %>
-    <%= a.input :sort_code, placeholder: ' E.g 123456' %>
-    <%= a.input :balance, placeholder: 'E.g 10000.00' %>
-    <%= a.submit class: 'btn btn-primary' %>
-  <% end %>
+<div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100vh;">
+  <div class="form-container text-center">
+    <h3><%= current_user.first_name %>, fill in this form to add an account:</h3>
+    <%= simple_form_for(@account) do |a| %>
+      <%= a.input :bank_name, collection: @account.account_categories %>
+      <%= a.input :currency, collection: currency%>
+      <%= a.input :account_number, placeholder: 'E.g 12345678' %>
+      <%= a.input :sort_code, placeholder: ' E.g 123456' %>
+      <%= a.input :balance, placeholder: 'E.g 10000.00' %>
+      <%= a.submit class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 </div>
