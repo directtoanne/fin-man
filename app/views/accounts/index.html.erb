@@ -1,8 +1,8 @@
 <div class="container pt-4 text-center">
-  <h1><%= "You have #{pluralize(@accounts.count, "Account")} with Fin-Man:" %></h1><br>
+  <h1><%= "You have #{pluralize(@accounts.count, "Account")} with Fin-Man:" %></h1><br>  
   <%= link_to "Add a new account", new_account_path, class: "btn btn-primary" %>
-  
   <div class="d-flex justify-content-around flex-wrap">
+  <% if !@accounts.nil? && @accounts.count > 0 %>
     <% @accounts.each do |account| %>
       <%= link_to account_path(account.id) do %>
         <div class="account-card">
@@ -16,5 +16,17 @@
         </div>
       <% end %>
     <% end %>
+  <% else %>
+    <div class="text-center">
+      <%= link_to new_account_path do %>
+        <lord-icon
+          src="https://cdn.lordicon.com/mecwbjnp.json"
+          trigger="hover"
+          colors="primary:#FAEBD7,secondary:#FAEBD7"
+          style="width:100px;height:100px">
+        </lord-icon><h2>Add a new Account now to Start Tracking!!</h2>
+      <% end %>
+    </div>    
+  <% end %>
   </div>
 </div>
