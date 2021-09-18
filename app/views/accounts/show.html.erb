@@ -32,7 +32,8 @@
                   Deposited:
                   <% temp = "from " %>
                 <% end %>
-                <%= currency_pretty(amount: transaction.amount, currency: @account.currency)[:format] %>
+                <% currency_display = currency_pretty(amount: transaction.amount, currency: @account.currency)[:format] %>
+                <%= currency_display.gsub('-', '') %>
               </div>
               <div class="transactions-attr"><%= temp %><%= transaction.recipient %></div>
               <div class="transactions-attr">Time: <%= transaction.time.strftime("%I:%M%p on %d/%m/%Y") %></div>
