@@ -17,13 +17,14 @@
 
 <div class="counter-main container pt-4 text-center">
   <h1><%= "You have #{pluralize(@goals.count, "Goal")} with Fin-Man:" %></h1><br>
-  <button id="goal-summary" onclick="hideShowElement('goal-summary-chart')" class="btn btn-primary"><i class="fas fa-eye"></i> Summary</button>
-  <%= link_to "Create a new goal", new_goal_path, class: "btn btn-primary" %>
-  <!-- Goals stats start -->
-  <div class="goal-summary-chart row" id="goal-summary-chart">
+
+  <% if !@goals.nil? && @goals.count > 0 %>
+    <button id="goal-summary" onclick="hideShowElement('goal-summary-chart')" class="btn btn-primary"><i class="fas fa-eye"></i> Summary</button>
+    <%= link_to "Create a new goal", new_goal_path, class: "btn btn-primary" %>
+    <div class="goal-summary-chart row" id="goal-summary-chart">
     <div class="goal-summary-item col-6">Total Goal Savings: 
-    <%num = currency_pretty(amount:@goals_total_count) if !@goals_total_count.nil?%>
-    <div id="jsCounter" class="jsCounter counter_style" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"><%= num[:format] %></div>
+      <%num = currency_pretty(amount:@goals_total_count) if !@goals_total_count.nil?%>
+      <div id="jsCounter" class="jsCounter counter_style" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"><%= num[:format] %></div>
     </div>
     <% if !@goals_total_count.nil? && !@goals_data.nil? && @goals_total_count.positive? %>
     <div class="goal-summary-item col-6">
@@ -31,6 +32,8 @@
     </div>
     <% end %>
   </div>
+  <% end %>
+  <!-- Goals stats start -->
   <!-- Goals stats END-->
   <!-- Hide / Show chart on button press -->
   <div class="cards">
