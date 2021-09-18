@@ -2,6 +2,7 @@
 <div class="container-sm mt-4">
   <% @transactions.reverse.each do |transaction| %>
     <div class="d-flex justify-content-around">
+    <% if !transaction.amount.nil?  %>
       <div class="transactions-attr">
         <% if transaction.amount.negative? %>
           Withdrew: 
@@ -14,6 +15,7 @@
       </div>
       <div class="transactions-attr"><%= temp %><%= transaction.recipient %></div>
       <div class="transactions-attr">Time: <%= transaction.time.strftime("%I:%M%p on %d/%m/%Y") %></div>
+    <% end %>
     </div>
   <% end %>
 </div>

@@ -22,17 +22,19 @@
   <!-- Goals stats start -->
   <div class="goal-summary-chart row" id="goal-summary-chart">
     <div class="goal-summary-item col-6">Total Goal Savings: 
-    <%num = currency_pretty(amount:@goals_total_count)%>
+    <%num = currency_pretty(amount:@goals_total_count) if !@goals_total_count.nil?%>
     <div id="jsCounter" class="jsCounter counter_style" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"><%= num[:format] %></div>
     </div>
+    <% if !@goals_total_count.nil? && !@goals_data.nil? && @goals_total_count.positive? %>
     <div class="goal-summary-item col-6">
       <div id="ampieChart" data-pie="<%=@goals_data.to_json%>"></div>
     </div>
+    <% end %>
   </div>
   <!-- Goals stats END-->
   <!-- Hide / Show chart on button press -->
   <div class="cards">
-    <% if @goals.count > 0 %>
+    <% if !@goals.nil? && @goals.count > 0 %>
       <% @goals.each do |goal| %>
         <div class="goal-card card flex-row shadow p-2">
           <div class="col goal-img-container">
@@ -75,7 +77,16 @@
         </div>
       <% end %>
     <% else %>
-      <div class="text-center"><h2>You currently have no goals set.</h2></div>
+      <div class="text-center">
+        <%= link_to new_goal_path do %>
+          <lord-icon
+            src="https://cdn.lordicon.com/mecwbjnp.json"
+            trigger="hover"
+            colors="primary:#FAEBD7,secondary:#FAEBD7"
+            style="width:100px;height:100px">
+          </lord-icon><h2>Add a new Goal now to Start Saving!!</h2>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

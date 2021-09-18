@@ -72,3 +72,16 @@
 a:hover {
   text-decoration: none;
 }
+
+.card_article {
+  justify-content: space-evenly;
+}
+
+.card_article-images {
+  max-width: 640px !important;
+  max-height: 427px !important;
+}
+
+.card_article-content {
+  justify-content: center;
+}

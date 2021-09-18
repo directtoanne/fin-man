@@ -70,7 +70,7 @@
           </div>
         <% end %>
         <div class="col d-flex flex-column h-sm-100">
-          <main class="row overflow-auto">
+          <main class="row overflow-auto <%= "goal-body" if current_page?(dashboard_path) %>">
             <!-- <div class="col p-0"> -->
               <%= render 'shared/flashes' %>
               <%= yield %>
