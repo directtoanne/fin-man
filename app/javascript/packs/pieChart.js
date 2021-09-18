@@ -21,6 +21,7 @@ am4core.ready(function() {
     //series.labels.template.truncate = true;
     series.hiddenState.properties.endAngle = -90;
     series.labels.template.text = "{goal_name}";
+    series.labels.template.fill = "#FAEBD7"
   }  else {
     console.log("Not showing summary pie chart as there is no data")
   }
