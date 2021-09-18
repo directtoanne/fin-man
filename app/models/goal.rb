@@ -2,6 +2,8 @@ class Goal < ApplicationRecord
   belongs_to :user
   has_many :goals_transactions, dependent: :destroy
 
+  validates :name, :category, :target_amount, :target_due_date, presence: true
+
   def mark_goal_complete
     complete_goal
   end
@@ -72,7 +74,7 @@ class Goal < ApplicationRecord
   def goal_status
     if completed?
       "Complete"
-    elsif target_due_date.past?
+    elsif !target_due_date.nil? && target_due_date.past?
       "Overdue"
     elsif current_amount == 0.to_f
       "Not Started"

@@ -14,7 +14,7 @@ class Account < ApplicationRecord
   end
 
   def account_categories
-    ["HSBC", "Barclays", "Lloyds", "Natwest", "Santander", "Halifax", "Nationwide", "TSB", "Royal Bank of Scotland", "Ulster", "First Direct", "Monzo", "Starling", "Other"]
+    ["HSBC", "Barclays", "Lloyds", "Natwest", "Santander", "Halifax", "Nationwide", "TSB", "Royal Bank of Scotland", "Ulster", "First Direct", "Monzo", "Starling", "US Bank", "Other"]
   end
 
   def account_categories_icon
@@ -32,6 +32,7 @@ class Account < ApplicationRecord
     when "First Direct" then "firstdirect--mark.svg"
     when "Monzo" then "monzo--mark.png"
     when "Starling" then "starling--mark.png"
+    when "US Bank" then "US-Bank.png"
     else
       "other--mark.png"
     end
