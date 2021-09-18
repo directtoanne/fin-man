@@ -22,7 +22,7 @@
     <button id="goal-summary" onclick="hideShowElement('goal-summary-chart')" class="btn btn-primary"><i class="fas fa-eye"></i> Summary</button>
     <%= link_to "Create a new goal", new_goal_path, class: "btn btn-primary" %>
     <div class="goal-summary-chart row" id="goal-summary-chart">
-    <div class="goal-summary-item col-6">Total Goal Savings: 
+    <div class="goal-summary-item col-6">Total Goal<%= pluralize_string(data: @goals, letter: "s") %> Savings: 
       <%num = currency_pretty(amount:@goals_total_count) if !@goals_total_count.nil?%>
       <div id="jsCounter" class="jsCounter counter_style" data-number="<%= num[:amount] %>" data-prefix="<%= num[:symbol] %>"><%= num[:format] %></div>
     </div>
@@ -47,8 +47,8 @@
             <h4 class="card-title m-0"><%=goal.name.capitalize%></h4><br>
             <div class="goal-subject"><%=goal.subject%></div><br>
             <div class="goal-details">
-              <div>Saved: £<%= goal.current_amount ? goal.current_amount : 0 %> / £<%= goal.target_amount%></div>
-              <div>Target: <%= goal.pretty_date(goal.target_due_date) %> - <%=goal.goal_days_till_due%> Days Left</div>
+              <div>Saved: <%= currency_pretty(amount: goal.current_amount ? goal.current_amount : 0)[:format] %> / <%= currency_pretty(amount: goal.target_amount)[:format]%></div>
+              <div>Target: <%= goal.pretty_date(goal.target_due_date) %> / <%=goal.goal_days_till_due%> Days <%= goal.target_due_date.past? ? "Ago" : "Left" %></div>
             </div>
           </div>
           <div class="goal-actions col-1">
