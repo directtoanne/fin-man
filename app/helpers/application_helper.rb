@@ -11,7 +11,11 @@ module ApplicationHelper
   end
 
   def pluralize_string(data:, letter:)
-    return letter.to_s if data.count > 1
+    if data.count > 1
+      return letter.to_s
+    else
+      return ""
+    end
   end
 
   def validate_data(data)
